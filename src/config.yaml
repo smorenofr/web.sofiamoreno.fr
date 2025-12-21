@@ -5,6 +5,7 @@ site:
   site: 'https://astrocomponents.dev'
   base: '/'
   trailingSlash: false
+  googleSiteVerificationId: 'some-verification-id'
 
 i18n:
   default: 'en'
