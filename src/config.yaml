@@ -1,38 +1,45 @@
 # yaml-language-server: $schema=../.vscode/site-config/config-schema.json
 
 site:
-  name: 'Astro Blocks'
-  site: 'https://astrocomponents.dev'
+  name: 'Sofia Moreno'
+  site: 'https://sofiamoreno.fr/'
   base: '/'
   trailingSlash: false
   googleSiteVerificationId: 'some-verification-id'
 
 i18n:
-  default: 'en'
+  default: 'fr'
   languages:
-    - code: 'en'
-      locale: 'en-US'
+    - code: 'fr'
+      locale: 'fr-FR'
       basePath: '/'
       direction: 'ltr'
-      label: 'English'
-    - code: 'es'
-      locale: 'es-ES'
-      basePath: '/es'
-      direction: 'ltr'
-      label: 'Español'
+      label: 'Français'
 
 metadata:
   title:
-    default: 'Astro Blocks'
-    template: '%s | Astro Blocks'
-  description: 'Modern, accessible Astro Blocks for building amazing web experiences.'
-  author: 'Your Name'
-  keywords: ['astro', 'components', 'blocks', 'web', 'design']
+    default: 'Sofia Moreno'
+    template: '%s | Joaillerie sur Mesure à Paris'
+  description: 'Sofia Moreno, créatrice de joaillerie sur mesure à Paris. Découvrez des pièces uniques alliant élégance et savoir-faire.'
+  author: 'Sofia Moreno'
+  keywords:
+    [
+      'joaillerie',
+      'bijoux sur mesure',
+      'Sofia Moreno',
+      'créatrice de bijoux',
+      'bijoux Paris',
+      'modelisation 3D',
+      'haute joaillerie',
+      'bijoux personnalisés',
+      'atelier de joaillerie',
+      'bijoux artisanaux',
+    ]
   charset: 'UTF-8'
   robots:
     index: true
     follow: true
-  canonical: 'https://astrocomponents.dev' # Base, will be extended per page
+  canonical: 'https://sofiamoreno.fr' # Base, will be extended per page
 
   # Theme
   theme:
@@ -50,16 +57,16 @@ metadata:
 
   # Open Graph
   openGraph:
-    site_name: 'Astro Blocks'
-    locale: 'en_US'
+    site_name: 'Sofia Moreno'
+    locale: 'fr_FR'
     localeAlternate: ['es_ES']
     type: 'website'
-    description: 'Build modern web experiences with accessible Astro Blocks'
+    description: 'Sofia Moreno, créatrice de joaillerie sur mesure à Paris. Découvrez des pièces uniques alliant élégance et savoir-faire.'
     images:
       - url: '/og-image.png'
         width: 1200
         height: 630
-        alt: 'Astro Blocks'
+        alt: 'Sofia Moreno'
         type: 'image/png'
 
   # Twitter
@@ -67,24 +74,24 @@ metadata:
     handle: '@yourhandle'
     site: '@yourhandle'
     cardType: 'summary_large_image'
-    title: 'Astro Blocks'
-    description: 'Modern, accessible Astro Blocks for building amazing web experiences.'
+    title: 'Sofia Moreno'
+    description: 'Sofia Moreno, créatrice de joaillerie sur mesure à Paris. Découvrez des pièces uniques alliant élégance et savoir-faire.'
     image: '/twitter-image.png'
-    imageAlt: 'Astro Blocks Preview'
+    imageAlt: 'Sofia Moreno'
 
   # Per-language overrides (consistent with i18n structure)
-  localized:
-    es:
-      title:
-        default: 'Componentes Astro'
-        template: '%s | Componentes Astro'
-      description: 'Componentes Astro modernos y accesibles para crear experiencias web increíbles.'
-      openGraph:
-        site_name: 'Componentes Astro'
-        locale: 'es_ES'
+  # localized:
+  #   es:
+  #     title:
+  #       default: 'Componentes Astro'
+  #       template: '%s | Componentes Astro'
+  #     description: 'Componentes Astro modernos y accesibles para crear experiencias web increíbles.'
+  #     openGraph:
+  #       site_name: 'Componentes Astro'
+  #       locale: 'es_ES'
 
 analytics:
   vendors:
     googleAnalytics:
-      id: 'G-XXXXXXXXXX'
+      id: 'G-M3QYDP56XF'
       partytown: true
