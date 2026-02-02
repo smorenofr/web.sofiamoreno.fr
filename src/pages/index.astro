@@ -1,7 +1,9 @@
 ---
+import Layout from '~/layouts/Layout.astro';
 import Container from '~/components/blocks/layout/Container.astro';
 import Headline from '~/components/blocks/primitives/Headline.astro';
-import Layout from '~/layouts/Layout.astro';
+import TwoColumnContainer from '~/components/blocks/layout/TwoColumnContainer.astro';
+import Image from '~/components/blocks/primitives/Image.astro';
 ---
 
 <Layout>
@@ -19,7 +21,51 @@ import Layout from '~/layouts/Layout.astro';
       title="Origine"
     />
   </Container>
+
   <Container>
     <p class="text-center">Origine text goes here!</p>
   </Container>
+
+  <TwoColumnContainer
+    htmlTag="section"
+    responsive
+    content={{
+      widthType: 'boxed',
+      air: 'normal',
+    }}
+  >
+    <div slot="left">
+      <Headline anchorId="derriere-le-design" title="Derriere le design" class="mt-0" />
+      <p>
+        Sofía Moreno, ce n'est pas qu'une marque — c'est une aventure faite de résilience, de
+        créativité et de liens profonds.
+      </p>
+      <p>
+        Née au Mexique, façonnée en Italie, épanouie à Paris, Sofía crée des pièces sur mesure et
+        des collections capsules qui célèbrent les femmes inspirantes et leurs parcours singuliers.
+      </p>
+
+      <p>
+        Chaque bijou porte une histoire — parfois audacieuse, parfois discrète, mais toujours pleine
+        de sens.
+      </p>
+      <p>
+        Avec la technologie comme alliée et l'émotion comme moteur, ses créations vibrent avec
+        celles qui les portent.
+      </p>
+      <p>
+        Envie de co-créer votre bijou ou de découvrir une collection qui vous parle&nbsp;? Bienvenue
+        dans un univers où le bijou devient un hommage.
+      </p>
+      <p>Gain a competitive advantage by incorporating industry leading practices</p>
+    </div>
+    <div slot="right">
+      <Image
+        src="~/assets/images/me-smoreno.jpeg"
+        alt="Sofia Moreno"
+        layout="responsive"
+        class="rounded-lg shadow"
+      />
+    </div>
+  </TwoColumnContainer>
 </Layout>
