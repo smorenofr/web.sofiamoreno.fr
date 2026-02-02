@@ -19,6 +19,8 @@ import type { ButtonProps } from '~/types/button.types';
 import Modal from '~/components/blocks/layout/Modal.astro';
 import NavigationTree from '~/components/blocks/composite/NavigationTree.astro';
 
+import logoSrc from '~/assets/vectors/logo.svg?raw';
+
 export type Props = {
   langCode?: string;
   metadata?: Partial<MetaData>;
@@ -137,7 +139,7 @@ const socialIconsHeader: ButtonProps[] = socialIcons.map((icon) => ({
         }}
         logo={{
           vector: {
-            src: '/assets/logo.svg?raw',
+            src: logoSrc,
           },
           class:
             'text-background w-48 md:w-72 group-data-[scrolled]:text-normal group-data-[scrolled]:w-48',
