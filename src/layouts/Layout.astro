@@ -12,6 +12,12 @@ import Container from '~/components/blocks/layout/Container.astro';
 import type { MetaData } from '~/types/metadata.types';
 import type { ContainerProps } from '~/types/container.types';
 import { mergeConfigs } from '~/utils/mergeConfigs';
+import Header from '~/components/blocks/composite/Header.astro';
+
+import Footer from '~/components/blocks/composite/Footer.astro';
+import type { ButtonProps } from '~/types/button.types';
+import Modal from '~/components/blocks/layout/Modal.astro';
+import NavigationTree from '~/components/blocks/composite/NavigationTree.astro';
 
 export type Props = {
   langCode?: string;
@@ -39,6 +45,37 @@ const defaultTopmostContainer = {
 } as ContainerProps;
 
 const mergedTopmostContainer = mergeConfigs({}, defaultTopmostContainer, topmostContainer);
+
+const navigationItems: ButtonProps[] = [
+  { label: 'Derriere le design', href: '#derriere-le-design' },
+  { label: 'Joaillerie sur mesure', href: '#joaillerie-sur-mesure' },
+  { label: 'Conception numérique & Fabrication', href: '#conception-numerique-fabrication' },
+  { label: 'Gallerie', href: '#gallerie' },
+  { label: 'Contactez-moi', href: '#contactez-moi' },
+];
+
+const socialIcons: ButtonProps[] = [
+  {
+    icon: { name: 'tabler:brand-facebook-filled' },
+    href: 'https://www.facebook.com/people/Sofia-Moreno/61576862935670/',
+    target: '_blank',
+  },
+  {
+    icon: { name: 'tabler:brand-instagram-filled' },
+    href: 'https://www.instagram.com/sofiamoreno_paris/',
+    target: '_blank',
+  },
+  {
+    icon: { name: 'tabler:brand-linkedin-filled' },
+    href: 'https://www.linkedin.com/in/sofiaku/',
+    target: '_blank',
+  },
+];
+
+const socialIconsHeader: ButtonProps[] = socialIcons.map((icon) => ({
+  ...icon,
+  class: 'hidden md:flex',
+}));
 ---
 
 <!doctype html>
@@ -90,8 +127,70 @@ const mergedTopmostContainer = mergeConfigs({}, defaultTopmostContainer, topmost
   </head>
   <body>
     <Container {...mergedTopmostContainer}>
+      <Header
+        isFloating
+        container={{
+          content: { boxWidth: 'full' },
+          background: {
+            class: 'group-data-[scrolled]:bg-background/70 group-data-[scrolled]:backdrop-blur-sm',
+          },
+        }}
+        logo={{
+          vector: {
+            src: '/assets/logo.svg?raw',
+          },
+          class:
+            'text-background w-48 md:w-72 group-data-[scrolled]:text-normal group-data-[scrolled]:w-48',
+        }}
+        defaultActionsConfig={{
+          variant: 'link',
+          class:
+            'text-background hover:text-background group-data-[scrolled]:text-normal group-data-[scrolled]:hover:text-normal',
+        }}
+        actionsLeft={[
+          {
+            'data-modal-trigger': 'mobile-menu',
+            icon: { name: 'heroicons:bars-3' },
+          },
+        ]}
+        actionsRight={socialIconsHeader}
+      />
+
       <slot />
+
+      <Footer
+        container={{
+          background: {
+            class: 'bg-surface',
+          },
+          border: {
+            width: 'border-t',
+            color: 'border-elevated',
+          },
+        }}
+        logo={{
+          vector: {
+            src: '/assets/logo.svg?raw',
+          },
+          class: 'w-48 text-normal hover:text-normal',
+        }}
+        socialActions={socialIcons}
+        disclaimer="Les créations présentées illustrent mon travail et parfois des collaborations. Chaque projet sur mesure est unique : résultats, délais et finitions varient selon le cahier des charges, les matériaux et votre implication. En commandant, vous acceptez la singularité et les éventuels ajustements du processus de conception et de fabrication."
+        footnote="© 2026 <strong>Sofía Moreno</strong>. Tous droits réservés."
+      />
+
+      <Modal
+        id="mobile-menu"
+        size="full"
+        class="bg-transparent rounded-none shadow-none flex items-center align-middle"
+      >
+        <NavigationTree
+          items={navigationItems}
+          defaultItemConfig={{ variant: 'link', size: 'xl' }}
+        />
+      </Modal>
     </Container>
+
     <!-- modal portal root: server-rendered root for portals (falls back to body append) -->
     <div id="modal-portal-root" class="z-9999"></div>
   </body>
