@@ -1,0 +1,25 @@
+---
+import Container from '~/components/blocks/layout/Container.astro';
+import Headline from '~/components/blocks/primitives/Headline.astro';
+import Layout from '~/layouts/Layout.astro';
+---
+
+<Layout>
+  <Container
+    minHeight="h-screen"
+    background={{
+      video: '/assets/videos/index-hero.webm',
+    }}
+    content={{
+      widthType: 'full',
+    }}
+  >
+    <Headline
+      class="absolute left-1/2 top-3/4 md:left-3/4 md:top-1/2 -translate-x-1/2 -translate-y-1/2"
+      title="Origine"
+    />
+  </Container>
+  <Container>
+    <p class="text-center">Origine text goes here!</p>
+  </Container>
+</Layout>
