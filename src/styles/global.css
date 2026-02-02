@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Quicksand:wght@300..700&family=Sacramento&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Quicksand:wght@300..700&family=Handlee&display=swap');
 
 @import 'tailwindcss';
 @import './colors.css';
@@ -7,7 +7,7 @@
   --font-title: 'Kodchasan', sans-serif;
   --font-subtitle: 'Quicksand', sans-serif;
   --font-body: 'Quicksand', sans-serif;
-  --font-quote: 'Sacramento', cursive;
+  --font-quote: 'Handlee', cursive;
 
   --container-max-width: 1280px;
 
@@ -140,10 +140,10 @@
   }
 
   blockquote {
-    @apply font-quote border-l-4 border-primary;
+    @apply font-quote border-l-4 border-brown;
     padding-left: 1rem;
     font-style: italic;
-    font-size: clamp(1.5rem, 1.35rem + 0.75vw, 1.875rem); /* 24px → 30px */
+    font-size: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem); /* 20px → 24px */
     line-height: 1.5;
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
