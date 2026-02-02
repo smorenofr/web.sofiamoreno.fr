@@ -4,6 +4,8 @@ import Container from '~/components/blocks/layout/Container.astro';
 import Headline from '~/components/blocks/primitives/Headline.astro';
 import TwoColumnContainer from '~/components/blocks/layout/TwoColumnContainer.astro';
 import Image from '~/components/blocks/primitives/Image.astro';
+import Content from '~/components/blocks/composite/Content.astro';
+import ItemsTimeline from '~/components/blocks/composite/ItemsTimeline.astro';
 ---
 
 <Layout>
@@ -33,6 +35,8 @@ import Image from '~/components/blocks/primitives/Image.astro';
       widthType: 'boxed',
       air: 'normal',
     }}
+    background={{ class: 'bg-surface' }}
+    border={{ width: 'border-y', color: 'border-elevated' }}
   >
     <div slot="left">
       <Headline anchorId="derriere-le-design" title="Derriere le design" class="mt-0" />
@@ -68,4 +72,64 @@ import Image from '~/components/blocks/primitives/Image.astro';
       />
     </div>
   </TwoColumnContainer>
+
+  <Content
+    imageOnLeft
+    headline={{
+      anchorId: 'joaillerie-sur-mesure',
+      tagline: 'Particuliers',
+      title: 'Joaillerie sur mesure',
+    }}
+    image={{
+      src: '~/assets/images/me-studio.png',
+      alt: 'Demo image',
+      class: 'rounded-lg shadow',
+    }}
+  >
+    <ItemsTimeline
+      defaultItemConfig={{
+        icon: { class: 'bg-tertiary text-background p-2 rounded-full' },
+      }}
+      items={[
+        {
+          icon: { name: 'tabler:number-1' },
+          title: 'Soumettez votre brief',
+          content:
+            'Envoyez-moi le brief du projet : objectifs, contraintes, volumes et délais. Je prends connaissance des besoins techniques et commerciaux pour préparer la suite.',
+          actions: [
+            {
+              label: 'Remplir le formulaire',
+              href: '/',
+              intent: 'primary',
+            },
+          ],
+        },
+        {
+          icon: { name: 'tabler:number-2' },
+          title: 'Atelier technique & spécifications',
+          content:
+            'Je propose un atelier de cadrage (visio ou sur site) pour définir les spécifications techniques, choix matériaux, tolérances et contraintes de production. Nous établissons un cahier des charges précis.',
+          actions: [
+            {
+              label: 'Prendre rendez-vous',
+              href: '/',
+              intent: 'secondary',
+            },
+          ],
+        },
+        {
+          icon: { name: 'tabler:number-3' },
+          title: 'Prototype numérique & validation',
+          content:
+            "Je conçois les prototypes numériques (CAO, rendu 3D) et, si nécessaire, un prototype physique. Nous testons et ajustons jusqu'à la validation technique et esthétique.",
+        },
+        {
+          icon: { name: 'tabler:number-4' },
+          title: 'Production, contrôle qualité & livraison',
+          content:
+            "Mon atelier pilote la production (fabrication, finitions), effectue le contrôle qualité et coordonne la logistique pour la livraison ou l'intégration. J'assure le suivi et la documentation.",
+        },
+      ]}
+    />
+  </Content>
 </Layout>
