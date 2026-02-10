@@ -12,8 +12,8 @@
   --container-max-width: 1280px;
 
   /* intent-based colors */
-  --color-primary: var(--color-blue);
-  --color-primary-hover: var(--color-blue-600);
+  --color-primary: var(--color-mexican-pink);
+  --color-primary-hover: var(--color-mexican-pink-600);
   --color-secondary: var(--color-sky);
   --color-secondary-hover: var(--color-sky-600);
   --color-tertiary: var(--color-slate);
