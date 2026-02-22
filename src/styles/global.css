@@ -37,9 +37,9 @@
   --color-info-hover: var(--color-cyan-600);
 
   /* surface colors */
-  --color-background: var(--color-base);
+  --color-background: var(--color-crust);
   --color-surface: var(--color-mantle);
-  --color-elevated: var(--color-crust);
+  --color-elevated: var(--color-base);
 
   /* border colors */
   --color-border: var(--color-surface2);
@@ -60,7 +60,7 @@
 
 @layer base {
   ::selection {
-    @apply bg-accent text-background;
+    @apply bg-mexican-pink text-background;
   }
 
   html {
