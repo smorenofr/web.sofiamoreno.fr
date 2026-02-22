@@ -13,6 +13,7 @@ import CallToAction from '~/components/blocks/composite/CallToAction.astro';
 ---
 
 <Layout>
+  <!-- Hero Section -->
   <Container
     minHeight="h-screen"
     background={{
@@ -28,12 +29,14 @@ import CallToAction from '~/components/blocks/composite/CallToAction.astro';
     />
   </Container>
 
+  <!-- Blockquote Section -->
   <Container>
     <blockquote class="text-center">
       La force peut être douce. <br />La nature devient architecture. <br />Le bijou devient vivant.
     </blockquote>
   </Container>
 
+  <!-- Les Succulentes Section -->
   <Container>
     <Headline anchorId="les-succulentes" title="Les Succulentes" />
     <p class="text-center">
@@ -47,105 +50,106 @@ import CallToAction from '~/components/blocks/composite/CallToAction.astro';
       <i>Les Succulentes n'est pas une collection.</i>
       <strong>C'est une déclaration.</strong>
     </p>
+
+    <ContentCarousel loop autoplay={{ enabled: true, delay: 3000, pauseOnHover: true }}>
+      <ContentCarouselItem basis="basis-full md:basis-1/2 lg:basis-1/3">
+        <Image
+          src="~/assets/images/succulentes/01.jpg"
+          alt="Pendentif succulentes rouges"
+          layout="responsive"
+          class="rounded-lg border border-elevated shadow"
+        />
+      </ContentCarouselItem>
+      <ContentCarouselItem basis="basis-full md:basis-1/2 lg:basis-1/3">
+        <Image
+          src="~/assets/images/succulentes/02.jpg"
+          alt="Bague succulentes vertes"
+          layout="responsive"
+          class="rounded-lg border border-elevated shadow"
+        />
+      </ContentCarouselItem>
+      <ContentCarouselItem basis="basis-full md:basis-1/2 lg:basis-1/3">
+        <Image
+          src="~/assets/images/succulentes/03.jpg"
+          alt="Chokers succulentes rouges"
+          layout="responsive"
+          class="rounded-lg border border-elevated shadow"
+        />
+      </ContentCarouselItem>
+      <ContentCarouselItem basis="basis-full md:basis-1/2 lg:basis-1/3">
+        <Image
+          src="~/assets/images/succulentes/04.jpg"
+          alt="Fermoire choker verte"
+          layout="responsive"
+          class="rounded-lg border border-elevated shadow"
+        />
+      </ContentCarouselItem>
+      <ContentCarouselItem basis="basis-full md:basis-1/2 lg:basis-1/3">
+        <Image
+          src="~/assets/images/succulentes/05.jpg"
+          alt="Pendentif succulentes noires"
+          layout="responsive"
+          class="rounded-lg border border-elevated shadow"
+        />
+      </ContentCarouselItem>
+    </ContentCarousel>
+
+    <TwoColumnContainer
+      htmlTag="div"
+      responsive
+      content={{
+        air: 'none',
+      }}
+    >
+      <div slot="left" class="h-full flex flex-col justify-center">
+        <p>
+          Les succulentes poussent sous le soleil du Mexique. Dans la terre aride, elles retiennent
+          l'essentiel.
+        </p>
+        <p class="text-center">
+          <strong>
+            Elles résistent.<br />
+            Elles s'adaptent.<br />
+            Elles se transforment.</strong
+          >
+        </p>
+        <p>
+          Les Succulentes est née de cette mémoire. Une collection inspirée par la résilience
+          mexicaine et la force silencieuse des femmes.
+        </p>
+        <p>
+          Pensée pour être modulable, transformable, adaptable à celle qui la porte, elle offre des
+          possibilités de personnalisation infinies. Chaque pièce évolue. Elle se compose, se
+          recompose, se réinvente.
+        </p>
+        <p>
+          <strong>Rien n'est figé.</strong> La transformation fait partie de sa nature. La résilience
+          n'est pas rigidité. C'est mouvement.
+        </p>
+      </div>
+      <div slot="right">
+        <Video
+          aspectRatio="square"
+          autoplay
+          loop
+          muted
+          hideControls
+          source={{
+            type: 'video',
+            sources: [
+              {
+                src: '/videos/succulentes/succulentes.mp4',
+                type: 'video/mp4',
+                size: 914,
+              },
+            ],
+          }}
+        />
+      </div>
+    </TwoColumnContainer>
   </Container>
 
-  <ContentCarousel loop autoplay={{ enabled: true, delay: 3000, pauseOnHover: true }}>
-    <ContentCarouselItem basis="basis-full md:basis-1/2 lg:basis-1/3">
-      <Image
-        src="~/assets/images/succulentes/01.jpg"
-        alt="Pendentif succulentes rouges"
-        layout="responsive"
-        class="rounded-lg border border-elevated shadow"
-      />
-    </ContentCarouselItem>
-    <ContentCarouselItem basis="basis-full md:basis-1/2 lg:basis-1/3">
-      <Image
-        src="~/assets/images/succulentes/02.jpg"
-        alt="Bague succulentes vertes"
-        layout="responsive"
-        class="rounded-lg border border-elevated shadow"
-      />
-    </ContentCarouselItem>
-    <ContentCarouselItem basis="basis-full md:basis-1/2 lg:basis-1/3">
-      <Image
-        src="~/assets/images/succulentes/03.jpg"
-        alt="Chokers succulentes rouges"
-        layout="responsive"
-        class="rounded-lg border border-elevated shadow"
-      />
-    </ContentCarouselItem>
-    <ContentCarouselItem basis="basis-full md:basis-1/2 lg:basis-1/3">
-      <Image
-        src="~/assets/images/succulentes/04.jpg"
-        alt="Fermoire choker verte"
-        layout="responsive"
-        class="rounded-lg border border-elevated shadow"
-      />
-    </ContentCarouselItem>
-    <ContentCarouselItem basis="basis-full md:basis-1/2 lg:basis-1/3">
-      <Image
-        src="~/assets/images/succulentes/05.jpg"
-        alt="Pendentif succulentes noires"
-        layout="responsive"
-        class="rounded-lg border border-elevated shadow"
-      />
-    </ContentCarouselItem>
-  </ContentCarousel>
-
-  <TwoColumnContainer
-    responsive
-    content={{
-      widthType: 'boxed',
-      air: 'normal',
-    }}
-  >
-    <div slot="left" class="h-full flex flex-col justify-center">
-      <p>
-        Les succulentes poussent sous le soleil du Mexique. Dans la terre aride, elles retiennent
-        l'essentiel.
-      </p>
-      <p class="text-center">
-        <strong>
-          Elles résistent.<br />
-          Elles s'adaptent.<br />
-          Elles se transforment.</strong
-        >
-      </p>
-      <p>
-        Les Succulentes est née de cette mémoire. Une collection inspirée par la résilience
-        mexicaine et la force silencieuse des femmes.
-      </p>
-      <p>
-        Pensée pour être modulable, transformable, adaptable à celle qui la porte, elle offre des
-        possibilités de personnalisation infinies. Chaque pièce évolue. Elle se compose, se
-        recompose, se réinvente.
-      </p>
-      <p>
-        <strong>Rien n'est figé.</strong> La transformation fait partie de sa nature. La résilience n'est
-        pas rigidité. C'est mouvement.
-      </p>
-    </div>
-    <div slot="right">
-      <Video
-        aspectRatio="square"
-        autoplay
-        loop
-        muted
-        hideControls
-        source={{
-          type: 'video',
-          sources: [
-            {
-              src: '/videos/succulentes/succulentes.mp4',
-              type: 'video/mp4',
-              size: 914,
-            },
-          ],
-        }}
-      />
-    </div>
-  </TwoColumnContainer>
-
+  <!-- Vision Section -->
   <Content
     headline={{ anchorId: 'vision', title: 'Vision' }}
     imageOnLeft
@@ -184,6 +188,7 @@ import CallToAction from '~/components/blocks/composite/CallToAction.astro';
     </p>
   </Content>
 
+  <!-- La Créatrice Section -->
   <Content
     headline={{
       title: 'La Créatrice',
@@ -211,6 +216,7 @@ import CallToAction from '~/components/blocks/composite/CallToAction.astro';
     <p>Aujourd'hui, elle relie ces trois mondes, et elle y va au bout de ses rêves.</p>
   </Content>
 
+  <!-- Autres Collections Section -->
   <Container>
     <Headline anchorId="autres-collections" title="Autres Collections" />
     <div class="text-center">
@@ -236,51 +242,52 @@ import CallToAction from '~/components/blocks/composite/CallToAction.astro';
         porte une histoire.
       </p>
     </div>
+
+    <ContentCarousel loop autoplay={{ enabled: true, delay: 3000, pauseOnHover: true }}>
+      <ContentCarouselItem basis="basis-full md:basis-1/2 lg:basis-1/3">
+        <Image
+          src="~/assets/images/autres/01.png"
+          alt="Pendentif obsidienne porté"
+          layout="responsive"
+          class="rounded-lg border border-elevated shadow"
+        />
+      </ContentCarouselItem>
+      <ContentCarouselItem basis="basis-full md:basis-1/2 lg:basis-1/3">
+        <Image
+          src="~/assets/images/autres/02.jpg"
+          alt="Pendentif caleidoscope porté"
+          layout="responsive"
+          class="rounded-lg border border-elevated shadow"
+        />
+      </ContentCarouselItem>
+      <ContentCarouselItem basis="basis-full md:basis-1/2 lg:basis-1/3">
+        <Image
+          src="~/assets/images/autres/03.jpg"
+          alt="Choker tunnel concentrique"
+          layout="responsive"
+          class="rounded-lg border border-elevated shadow"
+        />
+      </ContentCarouselItem>
+      <ContentCarouselItem basis="basis-full md:basis-1/2 lg:basis-1/3">
+        <Image
+          src="~/assets/images/autres/04.jpg"
+          alt="Bracelet naissance"
+          layout="responsive"
+          class="rounded-lg border border-elevated shadow"
+        />
+      </ContentCarouselItem>
+      <ContentCarouselItem basis="basis-full md:basis-1/2 lg:basis-1/3">
+        <Image
+          src="~/assets/images/autres/05.jpg"
+          alt="Bracelent amitié"
+          layout="responsive"
+          class="rounded-lg border border-elevated shadow"
+        />
+      </ContentCarouselItem>
+    </ContentCarousel>
   </Container>
 
-  <ContentCarousel loop autoplay={{ enabled: true, delay: 3000, pauseOnHover: true }}>
-    <ContentCarouselItem basis="basis-full md:basis-1/2 lg:basis-1/3">
-      <Image
-        src="~/assets/images/autres/01.png"
-        alt="Pendentif obsidienne porté"
-        layout="responsive"
-        class="rounded-lg border border-elevated shadow"
-      />
-    </ContentCarouselItem>
-    <ContentCarouselItem basis="basis-full md:basis-1/2 lg:basis-1/3">
-      <Image
-        src="~/assets/images/autres/02.jpg"
-        alt="Pendentif caleidoscope porté"
-        layout="responsive"
-        class="rounded-lg border border-elevated shadow"
-      />
-    </ContentCarouselItem>
-    <ContentCarouselItem basis="basis-full md:basis-1/2 lg:basis-1/3">
-      <Image
-        src="~/assets/images/autres/03.jpg"
-        alt="Choker tunnel concentrique"
-        layout="responsive"
-        class="rounded-lg border border-elevated shadow"
-      />
-    </ContentCarouselItem>
-    <ContentCarouselItem basis="basis-full md:basis-1/2 lg:basis-1/3">
-      <Image
-        src="~/assets/images/autres/04.jpg"
-        alt="Bracelet naissance"
-        layout="responsive"
-        class="rounded-lg border border-elevated shadow"
-      />
-    </ContentCarouselItem>
-    <ContentCarouselItem basis="basis-full md:basis-1/2 lg:basis-1/3">
-      <Image
-        src="~/assets/images/autres/05.jpg"
-        alt="Bracelent amitié"
-        layout="responsive"
-        class="rounded-lg border border-elevated shadow"
-      />
-    </ContentCarouselItem>
-  </ContentCarousel>
-
+  <!-- Joaillerie sur mesure Section -->
   <Content
     headline={{
       anchorId: 'joaillerie-sur-mesure',
@@ -324,8 +331,10 @@ import CallToAction from '~/components/blocks/composite/CallToAction.astro';
     />
   </Content>
 
+  <!-- Call to Action Section -->
   <CallToAction
     headline={{
+      anchorId: 'contactez-moi',
       title: 'Contactez-moi',
       subtitle:
         'Remplissez le formulaire pour discuter de votre projet de bijou sur mesure, ou pour toute question sur les collections.',
