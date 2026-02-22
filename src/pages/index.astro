@@ -37,7 +37,7 @@ import CallToAction from '~/components/blocks/composite/CallToAction.astro';
   </Container>
 
   <!-- Les Succulentes Section -->
-  <Container>
+  <Container background={{ class: 'bg-surface' }}>
     <Headline anchorId="les-succulentes" title="Les Succulentes" />
     <p class="text-center">
       Les Succulentes est née d'une plante capable de survivre dans le désert. Elle retient l'eau.
@@ -192,6 +192,7 @@ import CallToAction from '~/components/blocks/composite/CallToAction.astro';
 
   <!-- La Créatrice Section -->
   <Content
+    container={{ background: { class: 'bg-surface' } }}
     headline={{
       title: 'La Créatrice',
       anchorId: 'creatrice',
@@ -293,6 +294,7 @@ import CallToAction from '~/components/blocks/composite/CallToAction.astro';
 
   <!-- Joaillerie sur mesure Section -->
   <Content
+    container={{ background: { class: 'bg-surface' } }}
     headline={{
       anchorId: 'joaillerie-sur-mesure',
       title: 'Joaillerie sur mesure',
