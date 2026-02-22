@@ -99,10 +99,10 @@ import CallToAction from '~/components/blocks/composite/CallToAction.astro';
       air: 'normal',
     }}
   >
-    <div slot="left">
+    <div slot="left" class="h-full flex flex-col justify-center">
       <p>
-        <br /><br />
-        Les succulentes poussent sous le soleil du Mexique. Dans la terre aride, elles retiennent l'essentiel.
+        Les succulentes poussent sous le soleil du Mexique. Dans la terre aride, elles retiennent
+        l'essentiel.
       </p>
       <p class="text-center">
         <strong>
@@ -155,6 +155,7 @@ import CallToAction from '~/components/blocks/composite/CallToAction.astro';
       layout: 'responsive',
       class: 'rounded-lg shadow',
     }}
+    contentSlotClass="h-full flex flex-col justify-center"
   >
     <p>
       <strong>Redonner à la joaillerie sa dimension humaine et vivante.</strong>
@@ -182,6 +183,7 @@ import CallToAction from '~/components/blocks/composite/CallToAction.astro';
       Un luxe artistique qui célèbre la transformation, l'audace et la joie d'exister.
     </p>
   </Content>
+
   <Content
     headline={{
       title: 'La Créatrice',
@@ -193,6 +195,7 @@ import CallToAction from '~/components/blocks/composite/CallToAction.astro';
       layout: 'responsive',
       class: 'rounded-lg shadow',
     }}
+    contentSlotClass="h-full flex flex-col justify-center"
   >
     <p>
       Elle est née au Mexique. Un pays de couleurs intenses, de symboles puissants, de résilience.
@@ -289,8 +292,8 @@ import CallToAction from '~/components/blocks/composite/CallToAction.astro';
       layout: 'responsive',
       class: 'rounded-lg shadow',
     }}
+    contentSlotClass="h-full flex flex-col justify-center"
   >
-    <p><br /><br /></p>
     <ItemsTimeline
       defaultItemConfig={{
         icon: { class: 'bg-tertiary text-background p-2 rounded-full' },
