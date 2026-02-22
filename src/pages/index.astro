@@ -4,10 +4,12 @@ import Container from '~/components/blocks/layout/Container.astro';
 import Headline from '~/components/blocks/primitives/Headline.astro';
 import TwoColumnContainer from '~/components/blocks/layout/TwoColumnContainer.astro';
 import Image from '~/components/blocks/primitives/Image.astro';
-import Content from '~/components/blocks/composite/Content.astro';
-import ItemsTimeline from '~/components/blocks/composite/ItemsTimeline.astro';
 import ContentCarousel from '~/components/blocks/composite/ContentCarousel.astro';
 import ContentCarouselItem from '~/components/blocks/primitives/ContentCarouselItem.astro';
+import Video from '~/components/blocks/primitives/Video.astro';
+import Content from '~/components/blocks/composite/Content.astro';
+import ItemsTimeline from '~/components/blocks/composite/ItemsTimeline.astro';
+import CallToAction from '~/components/blocks/composite/CallToAction.astro';
 ---
 
 <Layout>
@@ -22,151 +24,328 @@ import ContentCarouselItem from '~/components/blocks/primitives/ContentCarouselI
   >
     <Headline
       class="absolute left-1/2 top-3/4 md:left-3/4 md:top-1/2 -translate-x-1/2 -translate-y-1/2"
-      title="Origine"
+      title="Les Succulentes"
     />
   </Container>
 
   <Container>
-    <blockquote class="text-center">Origine text goes here! <br />(this is a quote)</blockquote>
+    <blockquote class="text-center">
+      La force peut être douce. <br />La nature devient architecture. <br />Le bijou devient vivant.
+    </blockquote>
   </Container>
 
+  <Container>
+    <Headline anchorId="les-succulentes" title="Les Succulentes" />
+    <p class="text-center">
+      Les Succulentes est née d'une plante capable de survivre dans le désert. Elle retient l'eau.
+      Elle transforme l'aridité en force. Chaque pièce s'inspire de cette résilience. Formes
+      organiques. Volumes sculpturaux. Mouvement fluide. Pensée pour être modulable, transformable,
+      adaptable à celle qui la porte.
+      <br />
+      <i>Les Succulentes n'est pas une collection.</i>
+      <strong>C'est une déclaration.</strong>
+    </p>
+  </Container>
+
+  <ContentCarousel loop autoplay={{ enabled: true, delay: 3000, pauseOnHover: true }}>
+    <ContentCarouselItem basis="basis-full md:basis-1/2 lg:basis-1/3">
+      <Image
+        src="~/assets/images/succulentes/01.jpg"
+        alt="Pendentif succulentes rouges"
+        layout="responsive"
+        class="rounded-lg border border-elevated shadow"
+      />
+    </ContentCarouselItem>
+    <ContentCarouselItem basis="basis-full md:basis-1/2 lg:basis-1/3">
+      <Image
+        src="~/assets/images/succulentes/02.jpg"
+        alt="Bague succulentes vertes"
+        layout="responsive"
+        class="rounded-lg border border-elevated shadow"
+      />
+    </ContentCarouselItem>
+    <ContentCarouselItem basis="basis-full md:basis-1/2 lg:basis-1/3">
+      <Image
+        src="~/assets/images/succulentes/03.jpg"
+        alt="Chokers succulentes rouges"
+        layout="responsive"
+        class="rounded-lg border border-elevated shadow"
+      />
+    </ContentCarouselItem>
+    <ContentCarouselItem basis="basis-full md:basis-1/2 lg:basis-1/3">
+      <Image
+        src="~/assets/images/succulentes/04.jpg"
+        alt="Fermoire choker verte"
+        layout="responsive"
+        class="rounded-lg border border-elevated shadow"
+      />
+    </ContentCarouselItem>
+    <ContentCarouselItem basis="basis-full md:basis-1/2 lg:basis-1/3">
+      <Image
+        src="~/assets/images/succulentes/05.jpg"
+        alt="Pendentif succulentes noires"
+        layout="responsive"
+        class="rounded-lg border border-elevated shadow"
+      />
+    </ContentCarouselItem>
+  </ContentCarousel>
+
   <TwoColumnContainer
-    htmlTag="section"
     responsive
     content={{
       widthType: 'boxed',
       air: 'normal',
     }}
-    background={{ class: 'bg-surface' }}
-    border={{ width: 'border-y', color: 'border-elevated' }}
   >
     <div slot="left">
-      <Headline anchorId="derriere-le-design" title="Derriere le design" class="mt-0" />
       <p>
-        Sofía Moreno, ce n'est pas qu'une marque — c'est une aventure faite de résilience, de
-        créativité et de liens profonds.
+        <br /><br />
+        Les succulentes poussent sous le soleil du Mexique. Dans la terre aride, elles retiennent l'essentiel.
       </p>
+      <p>Elles résistent.</p>
+      <p>Elles s'adaptent.</p>
+      <p>Elles se transforment.</p>
       <p>
-        Née au Mexique, façonnée en Italie, épanouie à Paris, Sofía crée des pièces sur mesure et
-        des collections capsules qui célèbrent les femmes inspirantes et leurs parcours singuliers.
+        Les Succulentes est née de cette mémoire. Une collection inspirée par la résilience
+        mexicaine et la force silencieuse des femmes.
       </p>
-
+      <p>Chaque pièce évolue.</p>
+      <p>Un pendentif devient bague.</p>
+      <p>Un bijou devient choker.</p>
       <p>
-        Chaque bijou porte une histoire — parfois audacieuse, parfois discrète, mais toujours pleine
-        de sens.
+        <strong>Rien n'est figé.</strong> La transformation fait partie de sa nature. La résilience n'est
+        pas rigidité. C'est mouvement.
       </p>
-      <p>
-        Avec la technologie comme alliée et l'émotion comme moteur, ses créations vibrent avec
-        celles qui les portent.
-      </p>
-      <p>
-        Envie de co-créer votre bijou ou de découvrir une collection qui vous parle&nbsp;? Bienvenue
-        dans un univers où le bijou devient un hommage.
-      </p>
-      <p>Gain a competitive advantage by incorporating industry leading practices</p>
     </div>
     <div slot="right">
-      <Image
-        src="~/assets/images/me-smoreno.jpeg"
-        alt="Sofia Moreno"
-        layout="responsive"
-        class="rounded-lg shadow"
+      <Video
+        aspectRatio="square"
+        source={{
+          type: 'video',
+          sources: [
+            {
+              src: '/videos/succulentes/succulentes.mp4',
+              type: 'video/mp4',
+              size: 914,
+            },
+          ],
+        }}
       />
     </div>
   </TwoColumnContainer>
 
   <Content
+    headline={{ anchorId: 'vision', title: 'Vision' }}
     imageOnLeft
-    headline={{
-      anchorId: 'joaillerie-sur-mesure',
-      tagline: 'Particuliers',
-      title: 'Joaillerie sur mesure',
-    }}
     image={{
-      src: '~/assets/images/me-studio.png',
-      alt: 'Demo image',
+      src: '~/assets/images/vision/vision.png',
+      alt: 'Pendentif obsidienne',
+      layout: 'responsive',
       class: 'rounded-lg shadow',
     }}
   >
+    <p>
+      <strong>Redonner à la joaillerie sa dimension humaine et vivante.</strong>
+    </p>
+    <p>
+      Sofía Moreno est un studio de joaillerie fondé à Paris, nourri par des racines mexicaines.
+    </p>
+    <p>
+      Nous créons des pièces sur mesure et des collections capsules où la technologie dialogue avec
+      l'émotion, et où la rigueur rencontre la joie de vivre.
+    </p>
+    <p>Chaque bijou est pensé comme un objet vivant.</p>
+    <p>Il évolue. Il se transforme. Il accompagne les mouvements de la vie.</p>
+    <p>Notre approche relie :</p>
+    <p>- la précision de la modélisation 3D</p>
+    <p>- le savoir-faire</p>
+    <p>- des matières responsables</p>
+    <p>- l'énergie solaire et symbolique du Mexique</p>
+    <p>Nous croyons en une joaillerie libre, sincère et lumineuse.</p>
+    <p>Un luxe artistique qui célèbre la transformation, l'audace et la joie d'exister.</p>
+  </Content>
+
+  <Content
+    headline={{
+      title: 'La Créatrice',
+      anchorId: 'creatrice',
+    }}
+    image={{
+      src: '~/assets/images/me-smoreno.jpeg',
+      alt: 'Sofia Moreno',
+      width: 360,
+      height: 480,
+      layout: 'responsive',
+      class: 'rounded-lg shadow',
+    }}
+  >
+    <p>Entre Mexique, Italie et Paris</p>
+    <p>Elle est née au Mexique.</p>
+    <p>
+      Un pays où la couleur est intense, où chaque symbole porte une mémoire, où la matière raconte
+      une histoire de résilience et de transformation.
+    </p>
+    <p>En Italie, elle étudie l'ingénierie joaillière.</p>
+    <p>
+      Elle y découvre la modélisation 3D, la précision du geste numérique, la structure invisible
+      qui soutient la beauté.
+    </p>
+    <p>Elle y apprend la rigueur, l'exigence technique, la construction du détail.</p>
+    <p>
+      À Paris, au sein de grandes maisons, elle participe au développement de collections
+      emblématiques.
+    </p>
+    <p>Elle comprend alors que la maîtrise technique n'a de valeur que si elle sert l'émotion.</p>
+    <p>Aujourd'hui, elle relie ces trois mondes, et elle y va au bout de ses rêves.</p>
+    <p>Le feu du Mexique.</p>
+    <p>La structure italienne.</p>
+    <p>L'excellence parisienne.</p>
+    <p>Elle crée des bijoux où la technologie devient sensible.</p>
+    <p>
+      Des pièces sculptées pour accompagner la liberté, la joie de vivre et la transformation
+      personnelle.
+    </p>
+  </Content>
+
+  <Container>
+    <Headline anchorId="autres-collections" title="Autres Collections" />
+    <div class="text-center">
+      <p>
+        Nous travaillons des métaux précieux responsables, sélectionnés auprès de partenaires
+        engagés et certifiés. <strong>L'obsidienne dorée</strong>, pierre volcanique mexicaine, est
+        au cœur de certaines créations. Miroir noir aux reflets solaires, matière ancestrale, elle
+        relie passé et modernité.
+      </p>
+      <p>
+        <strong>Le cuir vegan d'origine cactus</strong> s'intègre également à nos pièces. Issu d'un savoir-faire
+        innovant mexicain, il devient parfois structure, lien ou écrin. Une alternative contemporaine
+        et responsable qui affirme l'identité de la maison.
+      </p>
+      <p>
+        D'autres collections explorent des matières rares et des <strong
+          >couleurs pleines de vie</strong
+        >. Pierres profondes, nuances intenses, transparences lumineuses. Des contrastes forts qui
+        évoquent la chaleur, l'énergie et la joie.
+      </p><p>
+        <strong>Formes concentriques</strong>, basées sur les proportions d'or, jouant avec les
+        géométries. Chaque matière est choisie pour sa beauté, sa symbolique et sa traçabilité. Elle
+        porte une histoire.
+      </p>
+    </div>
+  </Container>
+
+  <ContentCarousel loop autoplay={{ enabled: true, delay: 3000, pauseOnHover: true }}>
+    <ContentCarouselItem basis="basis-full md:basis-1/2 lg:basis-1/3">
+      <Image
+        src="~/assets/images/autres/01.png"
+        alt="Pendentif obsidienne porté"
+        layout="responsive"
+        class="rounded-lg border border-elevated shadow"
+      />
+    </ContentCarouselItem>
+    <ContentCarouselItem basis="basis-full md:basis-1/2 lg:basis-1/3">
+      <Image
+        src="~/assets/images/autres/02.jpg"
+        alt="Pendentif caleidoscope porté"
+        layout="responsive"
+        class="rounded-lg border border-elevated shadow"
+      />
+    </ContentCarouselItem>
+    <ContentCarouselItem basis="basis-full md:basis-1/2 lg:basis-1/3">
+      <Image
+        src="~/assets/images/autres/03.jpg"
+        alt="Choker tunnel concentrique"
+        layout="responsive"
+        class="rounded-lg border border-elevated shadow"
+      />
+    </ContentCarouselItem>
+    <ContentCarouselItem basis="basis-full md:basis-1/2 lg:basis-1/3">
+      <Image
+        src="~/assets/images/autres/04.jpg"
+        alt="Bracelet naissance"
+        layout="responsive"
+        class="rounded-lg border border-elevated shadow"
+      />
+    </ContentCarouselItem>
+    <ContentCarouselItem basis="basis-full md:basis-1/2 lg:basis-1/3">
+      <Image
+        src="~/assets/images/autres/05.jpg"
+        alt="Bracelent amitié"
+        layout="responsive"
+        class="rounded-lg border border-elevated shadow"
+      />
+    </ContentCarouselItem>
+  </ContentCarousel>
+
+  <Content
+    headline={{
+      anchorId: 'joaillerie-sur-mesure',
+      title: 'Joaillerie sur mesure',
+    }}
+    image={{
+      src: '~/assets/images/sur mesure/02.png',
+      alt: 'Atelier',
+      layout: 'responsive',
+      class: 'rounded-lg shadow',
+    }}
+  >
+    <p><br /><br /></p>
     <ItemsTimeline
       defaultItemConfig={{
         icon: { class: 'bg-tertiary text-background p-2 rounded-full' },
       }}
       items={[
         {
-          icon: { name: 'tabler:number-1' },
-          title: 'Soumettez votre brief',
-          content:
-            'Envoyez-moi le brief du projet : objectifs, contraintes, volumes et délais. Je prends connaissance des besoins techniques et commerciaux pour préparer la suite.',
-          actions: [
-            {
-              label: 'Remplir le formulaire',
-              href: '/',
-              intent: 'primary',
-            },
-          ],
+          icon: { name: 'tabler:bulb' },
+          title: 'Intention',
+          content: 'Nous définissons votre histoire, vos symboles, votre moment.',
         },
         {
-          icon: { name: 'tabler:number-2' },
-          title: 'Atelier technique & spécifications',
-          content:
-            'Je propose un atelier de cadrage (visio ou sur site) pour définir les spécifications techniques, choix matériaux, tolérances et contraintes de production. Nous établissons un cahier des charges précis.',
-          actions: [
-            {
-              label: 'Prendre rendez-vous',
-              href: '/',
-              intent: 'secondary',
-            },
-          ],
+          icon: { name: 'tabler:brush' },
+          title: 'Visualisation',
+          content: 'Nous dessinons la pièce avec vous.',
         },
         {
-          icon: { name: 'tabler:number-3' },
-          title: 'Prototype numérique & validation',
+          icon: { name: 'tabler:mouse' },
+          title: 'Transformation',
           content:
-            "Je conçois les prototypes numériques (CAO, rendu 3D) et, si nécessaire, un prototype physique. Nous testons et ajustons jusqu'à la validation technique et esthétique.",
+            "Nous ajustons et transformons le design en 3D. Les volumes, les proportions et les détails sont affinés jusqu'à l'équilibre parfait.",
         },
         {
-          icon: { name: 'tabler:number-4' },
-          title: 'Production, contrôle qualité & livraison',
-          content:
-            "Mon atelier pilote la production (fabrication, finitions), effectue le contrôle qualité et coordonne la logistique pour la livraison ou l'intégration. J'assure le suivi et la documentation.",
+          icon: { name: 'tabler:diamond' },
+          title: 'Fabrication',
+          content: 'La pièce est réalisée  en métaux précieux.',
         },
       ]}
     />
   </Content>
 
-  <ContentCarousel loop autoplay={{ enabled: true, delay: 3000, pauseOnHover: true }}>
-    <ContentCarouselItem basis="basis-full md:basis-1/2 lg:basis-1/3">
-      <Image
-        src="~/assets/images/sur mesure/one.png"
-        alt="Mountain"
-        layout="responsive"
-        class="rounded-lg border border-elevated shadow"
-      />
-    </ContentCarouselItem>
-    <ContentCarouselItem basis="basis-full md:basis-1/2 lg:basis-1/3">
-      <Image
-        src="~/assets/images/sur mesure/two.png"
-        alt="Mountain"
-        layout="responsive"
-        class="rounded-lg border border-elevated shadow"
-      />
-    </ContentCarouselItem>
-    <ContentCarouselItem basis="basis-full md:basis-1/2 lg:basis-1/3">
-      <Image
-        src="~/assets/images/sur mesure/three.png"
-        alt="Mountain"
-        layout="responsive"
-        class="rounded-lg border border-elevated shadow"
-      />
-    </ContentCarouselItem>
-    <ContentCarouselItem basis="basis-full md:basis-1/2 lg:basis-1/3">
-      <Image
-        src="~/assets/images/sur mesure/four.png"
-        alt="Mountain"
-        layout="responsive"
-        class="rounded-lg border border-elevated shadow"
-      />
-    </ContentCarouselItem>
-  </ContentCarousel>
+  <CallToAction
+    headline={{
+      title: 'Contactez-moi',
+      subtitle:
+        'Remplissez le formulaire pour discuter de votre projet de bijou sur mesure, ou pour toute question sur les collections.',
+    }}
+    actions={[
+      {
+        label: 'Remplissez le formulaire',
+        icon: { name: 'tabler:category' },
+        intent: 'primary',
+        size: 'lg',
+        variant: 'solid',
+        shape: 'pill',
+        href: 'https://beautiful-radar-d8c.notion.site/237e05212921801cb353e2886bb57c89?pvs=105',
+        target: '_blank',
+      },
+      {
+        label: 'Contactez-moi',
+        icon: { name: 'tabler:mail' },
+        intent: 'secondary',
+        size: 'lg',
+        variant: 'solid',
+        shape: 'pill',
+        href: 'mailto:contact@sofiamoreno.fr',
+      },
+    ]}
+  />
 </Layout>
