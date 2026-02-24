@@ -53,7 +53,7 @@ metadata:
     icon32: '/favicon-32x32.png'
     icon16: '/favicon-16x16.png'
     maskIcon: '/safari-pinned-tab.svg'
-    maskIconColor: '#5bbad5'
+    maskIconColor: '#F1EEE9'
 
   # Open Graph
   openGraph:
@@ -63,7 +63,7 @@ metadata:
     type: 'website'
     description: 'Sofia Moreno, créatrice de joaillerie sur mesure à Paris. Découvrez des pièces uniques alliant élégance et savoir-faire.'
     images:
-      - url: '/og-image.png'
+      - url: '/social.png'
         width: 1200
         height: 630
         alt: 'Sofia Moreno'
@@ -76,7 +76,7 @@ metadata:
     cardType: 'summary_large_image'
     title: 'Sofia Moreno'
     description: 'Sofia Moreno, créatrice de joaillerie sur mesure à Paris. Découvrez des pièces uniques alliant élégance et savoir-faire.'
-    image: '/twitter-image.png'
+    image: '/social.png'
     imageAlt: 'Sofia Moreno'
 
   # Per-language overrides (consistent with i18n structure)
