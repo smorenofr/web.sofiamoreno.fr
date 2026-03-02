@@ -94,4 +94,4 @@ analytics:
   vendors:
     googleAnalytics:
       id: 'G-M3QYDP56XF'
-      partytown: true
+      partytown: false
