@@ -5,7 +5,7 @@ import { I18N, METADATA } from 'site-config';
 
 import CommonMeta from '~/components/meta/CommonMeta.astro';
 import Favicons from '~/components/meta/Favicons.astro';
-import Analytics from '~/components/meta/Analytics.astro';
+import AnalyticsBlock from '~/components/meta/Analytics.astro';
 import Metadata from '~/components/meta/Metadata.astro';
 import SiteVerification from '~/components/meta/SiteVerification.astro';
 import Container from '~/components/blocks/layout/Container.astro';
@@ -20,6 +20,8 @@ import Modal from '~/components/blocks/layout/Modal.astro';
 import NavigationTree from '~/components/blocks/composite/NavigationTree.astro';
 
 import logoSrc from '~/assets/vectors/logo.svg?raw';
+
+import Analytics from '@vercel/analytics/astro';
 
 export type Props = {
   langCode?: string;
@@ -79,6 +81,8 @@ const socialIconsHeader: ButtonProps[] = socialIcons.map((icon) => ({
   ...icon,
   class: 'hidden md:flex',
 }));
+
+const isProd = import.meta.env.PROD;
 ---
 
 <!doctype html>
@@ -88,7 +92,8 @@ const socialIconsHeader: ButtonProps[] = socialIcons.map((icon) => ({
     <Favicons />
     <Metadata {...metadata} />
     <SiteVerification />
-    <Analytics />
+    <AnalyticsBlock />
+    {isProd ? <Analytics /> : null}
 
     <!-- Initialize theme before page renders to prevent FOUC -->
     <script is:inline define:vars={{ colorScheme }}>
