@@ -22,6 +22,7 @@ import NavigationTree from '~/components/blocks/composite/NavigationTree.astro';
 import logoSrc from '~/assets/vectors/logo.svg?raw';
 
 import Analytics from '@vercel/analytics/astro';
+import  SpeedInsights  from "@vercel/speed-insights/astro"
 
 export type Props = {
   langCode?: string;
@@ -93,7 +94,7 @@ const isProd = import.meta.env.PROD;
     <Metadata {...metadata} />
     <SiteVerification />
     <AnalyticsBlock />
-    {isProd ? <Analytics /> : null}
+    {isProd ? <Analytics /> <SpeedInsights/> : null}
 
     <!-- Initialize theme before page renders to prevent FOUC -->
     <script is:inline define:vars={{ colorScheme }}>
