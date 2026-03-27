@@ -1,0 +1,392 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import Container from '~/components/blocks/layout/Container.astro';
+import Headline from '~/components/blocks/primitives/Headline.astro';
+import TwoColumnContainer from '~/components/blocks/layout/TwoColumnContainer.astro';
+import Image from '~/components/blocks/primitives/Image.astro';
+import ContentCarousel from '~/components/blocks/composite/ContentCarousel.astro';
+import ContentCarouselItem from '~/components/blocks/primitives/ContentCarouselItem.astro';
+import Video from '~/components/blocks/primitives/Video.astro';
+import Content from '~/components/blocks/composite/Content.astro';
+import ItemsTimeline from '~/components/blocks/composite/ItemsTimeline.astro';
+import CallToAction from '~/components/blocks/composite/CallToAction.astro';
+---
+
+<Layout langCode="en">
+  <!-- Hero Section -->
+  <Container
+    minHeight="h-screen"
+    background={{
+      video: '/videos/index-hero.mp4',
+    }}
+    content={{
+      widthType: 'full',
+    }}
+  >
+    <Headline
+      class="absolute left-1/2 top-3/4 md:left-3/4 md:top-1/2 -translate-x-1/2 -translate-y-1/2"
+      title="The Succulents"
+    />
+  </Container>
+
+  <!-- Blockquote Section -->
+  <Container>
+    <blockquote class="text-center">
+      Strength can be gentle. <br />Nature becomes architecture. <br />Jewelry becomes alive.
+    </blockquote>
+  </Container>
+
+  <!-- The Succulents Section -->
+  <Container background={{ class: 'bg-surface' }}>
+    <Headline anchorId="the-succulents" title="The Succulents" />
+    <p class="text-center">
+      The Succulents was born from a plant capable of surviving in the desert. It retains water. It
+      transforms aridity into strength. Each piece is inspired by this resilience. Organic forms.
+      Sculptural volumes. Fluid movement. <br />
+      The collection also incorporates vegan leather from cactus, an innovative and responsible material,
+      in direct echo to its botanical inspiration. It becomes a link, structure or case, extending the
+      story of the plant into the jewelry itself.
+      <br />
+      <i>The Succulents is not a collection.</i>
+      <strong>It's a statement.</strong>
+    </p>
+
+    <div class="w-screen relative left-1/2 -translate-x-1/2 overflow-x-clip">
+      <ContentCarousel loop autoplay={{ enabled: true, delay: 3000, pauseOnHover: true }}>
+        <ContentCarouselItem
+          content={{ air: 'tight' }}
+          basis="basis-full md:basis-1/2 lg:basis-1/3"
+        >
+          <Image
+            src="~/assets/images/succulentes/01.jpg"
+            alt="Red succulents pendant"
+            layout="responsive"
+            class="rounded-lg border border-elevated shadow"
+          />
+        </ContentCarouselItem>
+        <ContentCarouselItem
+          content={{ air: 'tight' }}
+          basis="basis-full md:basis-1/2 lg:basis-1/3"
+        >
+          <Image
+            src="~/assets/images/succulentes/02.jpg"
+            alt="Green succulents ring"
+            layout="responsive"
+            class="rounded-lg border border-elevated shadow"
+          />
+        </ContentCarouselItem>
+        <ContentCarouselItem
+          content={{ air: 'tight' }}
+          basis="basis-full md:basis-1/2 lg:basis-1/3"
+        >
+          <Image
+            src="~/assets/images/succulentes/03.jpg"
+            alt="Red succulents chokers"
+            layout="responsive"
+            class="rounded-lg border border-elevated shadow"
+          />
+        </ContentCarouselItem>
+        <ContentCarouselItem
+          content={{ air: 'tight' }}
+          basis="basis-full md:basis-1/2 lg:basis-1/3"
+        >
+          <Image
+            src="~/assets/images/succulentes/04.jpg"
+            alt="Green choker clasp"
+            layout="responsive"
+            class="rounded-lg border border-elevated shadow"
+          />
+        </ContentCarouselItem>
+        <ContentCarouselItem
+          content={{ air: 'tight' }}
+          basis="basis-full md:basis-1/2 lg:basis-1/3"
+        >
+          <Image
+            src="~/assets/images/succulentes/05.jpg"
+            alt="Black succulents pendant"
+            layout="responsive"
+            class="rounded-lg border border-elevated shadow"
+          />
+        </ContentCarouselItem>
+      </ContentCarousel>
+    </div>
+
+    <TwoColumnContainer
+      htmlTag="div"
+      responsive
+      content={{
+        air: 'none',
+      }}
+      spacing={{ margin: 'mt-12 md:mt-16 lg:mt-20' }}
+    >
+      <div slot="left" class="h-full flex flex-col justify-center">
+        <p>Succulents grow under the Mexican sun. In arid soil, they retain the essential.</p>
+        <p class="text-center">
+          <strong>
+            They resist.<br />
+            They adapt.<br />
+            They transform.</strong
+          >
+        </p>
+        <p>
+          The Succulents was born from this memory. A collection inspired by Mexican resilience and
+          the silent strength of women.
+        </p>
+        <p>
+          Designed to be modular, transformable, adaptable to the wearer, it offers infinite
+          customization possibilities. Each piece evolves. It composes, recomposes, reinvents
+          itself.
+        </p>
+        <p>
+          <strong>Nothing is fixed.</strong> Transformation is part of its nature. Resilience is not rigidity.
+          It's movement.
+        </p>
+      </div>
+      <div slot="right">
+        <Video
+          aspectRatio="square"
+          autoplay
+          loop
+          muted
+          hideControls
+          source={{
+            type: 'video',
+            sources: [
+              {
+                src: '/videos/succulentes/succulentes.mp4',
+                type: 'video/mp4',
+                size: 914,
+              },
+            ],
+          }}
+        />
+      </div>
+    </TwoColumnContainer>
+  </Container>
+
+  <!-- Vision Section -->
+  <Content
+    headline={{ anchorId: 'vision', title: 'Vision' }}
+    imageOnLeft
+    image={{
+      src: '~/assets/images/vision/vision.png',
+      alt: 'Obsidian pendant',
+      layout: 'responsive',
+      class: 'rounded-lg shadow',
+    }}
+    contentSlotClass="h-full flex flex-col justify-center"
+  >
+    <p>
+      <strong>Restoring jewelry's human and living dimension.</strong>
+    </p>
+    <p>Sofía Moreno is a jewelry studio founded in Paris, nourished by Mexican roots.</p>
+    <p>
+      We create bespoke pieces and capsule collections where technology dialogues with emotion, and
+      where rigor meets joy of living.
+    </p>
+    <p>
+      Each piece of jewelry is conceived as a living object. It evolves. It transforms. It
+      accompanies life's movements.
+    </p>
+    <p>
+      Our approach connects:<br />
+      - the precision of 3D modeling<br />
+      - craftsmanship<br />
+      - responsible materials<br />
+      - the solar and symbolic energy of Mexico<br />
+    </p>
+    <p>
+      We believe in free, sincere and luminous jewelry.<br />
+      An artistic luxury that celebrates transformation, boldness and the joy of existing.
+    </p>
+  </Content>
+
+  <!-- The Creator Section -->
+  <Content
+    container={{ background: { class: 'bg-surface' } }}
+    headline={{
+      title: 'The Creator',
+      anchorId: 'creator',
+    }}
+    image={{
+      src: '~/assets/images/me-smoreno.jpeg',
+      alt: 'Sofia Moreno',
+      layout: 'responsive',
+      class: 'rounded-lg shadow',
+    }}
+    contentSlotClass="h-full flex flex-col justify-center"
+  >
+    <p>She was born in Mexico. A country of intense colors, powerful symbols, resilience.</p>
+    <p>
+      In Italy, she studies jewelry engineering.<br />
+      There she learns 3D modeling, rigor, precision, the demand for detail.
+    </p>
+    <p>
+      In Paris, within prestigious houses, she participates in the development of iconic
+      collections.
+    </p>
+    <p>Today, she connects these three worlds, and pursues her dreams to the fullest.</p>
+  </Content>
+
+  <!-- Other Collections Section -->
+  <Container>
+    <Headline anchorId="other-collections" title="Other Collections" />
+    <div class="text-center">
+      <p>
+        We work with responsible precious metals, selected from committed and certified partners.
+        <strong>Golden obsidian</strong>, a Mexican volcanic stone, is at the heart of certain
+        creations. A black mirror with solar reflections, ancestral material, it connects past and
+        modernity.
+      </p>
+      <p>
+        <strong>Vegan leather from cactus</strong> also integrates into our pieces. Born from innovative
+        Mexican craftsmanship, it sometimes becomes structure, link or case. A contemporary and responsible
+        alternative that affirms the house's identity.
+      </p>
+      <p>
+        Other collections explore rare materials and <strong>colors full of life</strong>. Deep
+        stones, intense nuances, luminous transparencies. Strong contrasts that evoke warmth, energy
+        and joy.
+      </p><p>
+        <strong>Concentric forms</strong>, based on golden proportions, playing with geometries.
+        Each material is chosen for its beauty, symbolism and traceability. It carries a story.
+      </p>
+    </div>
+
+    <div class="w-screen relative left-1/2 -translate-x-1/2 overflow-x-clip">
+      <ContentCarousel loop autoplay={{ enabled: true, delay: 3000, pauseOnHover: true }}>
+        <ContentCarouselItem
+          content={{ air: 'tight' }}
+          basis="basis-full md:basis-1/2 lg:basis-1/3"
+        >
+          <Image
+            src="~/assets/images/autres/01.png"
+            alt="Obsidian pendant worn"
+            layout="responsive"
+            class="rounded-lg border border-elevated shadow"
+          />
+        </ContentCarouselItem>
+        <ContentCarouselItem
+          content={{ air: 'tight' }}
+          basis="basis-full md:basis-1/2 lg:basis-1/3"
+        >
+          <Image
+            src="~/assets/images/autres/02.jpg"
+            alt="Kaleidoscope pendant worn"
+            layout="responsive"
+            class="rounded-lg border border-elevated shadow"
+          />
+        </ContentCarouselItem>
+        <ContentCarouselItem
+          content={{ air: 'tight' }}
+          basis="basis-full md:basis-1/2 lg:basis-1/3"
+        >
+          <Image
+            src="~/assets/images/autres/03.jpg"
+            alt="Concentric tunnel choker"
+            layout="responsive"
+            class="rounded-lg border border-elevated shadow"
+          />
+        </ContentCarouselItem>
+        <ContentCarouselItem
+          content={{ air: 'tight' }}
+          basis="basis-full md:basis-1/2 lg:basis-1/3"
+        >
+          <Image
+            src="~/assets/images/autres/04.jpg"
+            alt="Birth bracelet"
+            layout="responsive"
+            class="rounded-lg border border-elevated shadow"
+          />
+        </ContentCarouselItem>
+        <ContentCarouselItem
+          content={{ air: 'tight' }}
+          basis="basis-full md:basis-1/2 lg:basis-1/3"
+        >
+          <Image
+            src="~/assets/images/autres/05.jpg"
+            alt="Friendship bracelet"
+            layout="responsive"
+            class="rounded-lg border border-elevated shadow"
+          />
+        </ContentCarouselItem>
+      </ContentCarousel>
+    </div>
+  </Container>
+
+  <!-- Bespoke Jewelry Section -->
+  <Content
+    container={{ background: { class: 'bg-surface' } }}
+    headline={{
+      anchorId: 'bespoke-jewelry',
+      title: 'Bespoke Jewelry',
+    }}
+    image={{
+      src: '~/assets/images/sur mesure/02.png',
+      alt: 'Atelier',
+      layout: 'responsive',
+      class: 'rounded-lg shadow',
+    }}
+    contentSlotClass="h-full flex flex-col justify-center"
+  >
+    <ItemsTimeline
+      defaultItemConfig={{
+        icon: { class: 'bg-tertiary text-background p-2 rounded-full' },
+      }}
+      items={[
+        {
+          icon: { name: 'tabler:bulb' },
+          title: 'Intention',
+          content: 'We define your story, your symbols, your moment.',
+        },
+        {
+          icon: { name: 'tabler:brush' },
+          title: 'Visualization',
+          content: 'We design the piece with you.',
+        },
+        {
+          icon: { name: 'tabler:mouse' },
+          title: 'Transformation',
+          content:
+            'We adjust and transform the design in 3D. Volumes, proportions and details are refined until the perfect balance.',
+        },
+        {
+          icon: { name: 'tabler:diamond' },
+          title: 'Fabrication',
+          content: 'The piece is crafted in precious metals.',
+        },
+      ]}
+    />
+  </Content>
+
+  <!-- Call to Action Section -->
+  <CallToAction
+    headline={{
+      anchorId: 'contact-me',
+      title: 'Contact Me',
+      subtitle:
+        'Fill out the form to discuss your bespoke jewelry project, or for any questions about the collections.',
+    }}
+    actions={[
+      {
+        label: 'Fill out the form',
+        icon: { name: 'tabler:category' },
+        intent: 'primary',
+        size: 'lg',
+        variant: 'solid',
+        shape: 'pill',
+        href: 'https://beautiful-radar-d8c.notion.site/237e05212921801cb353e2886bb57c89?pvs=105',
+        target: '_blank',
+      },
+      {
+        label: 'Contact me',
+        icon: { name: 'tabler:mail' },
+        intent: 'secondary',
+        size: 'lg',
+        variant: 'solid',
+        shape: 'pill',
+        href: 'mailto:contact@sofiamoreno.fr',
+      },
+    ]}
+  />
+</Layout>

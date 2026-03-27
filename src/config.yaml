@@ -15,6 +15,11 @@ i18n:
       basePath: '/'
       direction: 'ltr'
       label: 'Français'
+    - code: 'en'
+      locale: 'en-US'
+      basePath: '/en'
+      direction: 'ltr'
+      label: 'English'
 
 metadata:
   title:
@@ -59,7 +64,7 @@ metadata:
   openGraph:
     site_name: 'Sofia Moreno'
     locale: 'fr_FR'
-    localeAlternate: ['es_ES']
+    localeAlternate: ['en_US']
     type: 'website'
     description: 'Sofia Moreno, créatrice de joaillerie sur mesure à Paris. Découvrez des pièces uniques alliant élégance et savoir-faire.'
     images:
@@ -80,15 +85,32 @@ metadata:
     imageAlt: 'Sofia Moreno'
 
   # Per-language overrides (consistent with i18n structure)
-  # localized:
-  #   es:
-  #     title:
-  #       default: 'Componentes Astro'
-  #       template: '%s | Componentes Astro'
-  #     description: 'Componentes Astro modernos y accesibles para crear experiencias web increíbles.'
-  #     openGraph:
-  #       site_name: 'Componentes Astro'
-  #       locale: 'es_ES'
+  localized:
+    en:
+      title:
+        default: 'Sofia Moreno'
+        template: '%s | Bespoke Jewelry in Paris'
+      description: 'Sofia Moreno, bespoke jewelry designer in Paris. Discover unique pieces combining elegance and craftsmanship.'
+      keywords:
+        [
+          'jewelry',
+          'bespoke jewelry',
+          'Sofia Moreno',
+          'jewelry designer',
+          'jewelry Paris',
+          '3D modeling',
+          'fine jewelry',
+          'custom jewelry',
+          'jewelry workshop',
+          'handcrafted jewelry',
+        ]
+      openGraph:
+        site_name: 'Sofia Moreno'
+        locale: 'en_US'
+        description: 'Sofia Moreno, bespoke jewelry designer in Paris. Discover unique pieces combining elegance and craftsmanship.'
+      twitter:
+        title: 'Sofia Moreno'
+        description: 'Sofia Moreno, bespoke jewelry designer in Paris. Discover unique pieces combining elegance and craftsmanship.'
 
 analytics:
   vendors:

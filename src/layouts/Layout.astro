@@ -19,10 +19,13 @@ import type { ButtonProps } from '~/types/button.types';
 import Modal from '~/components/blocks/layout/Modal.astro';
 import NavigationTree from '~/components/blocks/composite/NavigationTree.astro';
 
+import { translations } from '~/i18n';
+
 import logoSrc from '~/assets/vectors/logo.svg?raw';
 
 import Analytics from '@vercel/analytics/astro';
 import  SpeedInsights  from "@vercel/speed-insights/astro"
+import LanguageToggle from '~/components/blocks/primitives/LanguageToggle.astro';
 
 export type Props = {
   langCode?: string;
@@ -41,6 +44,8 @@ const currentLang =
 const htmlLang = currentLang.code;
 const htmlDir = currentLang.direction;
 
+const t = translations[currentLang.code as keyof typeof translations] || translations.fr;
+
 // Get color scheme from config
 const colorScheme = METADATA.theme?.colorScheme || 'light dark';
 
@@ -52,12 +57,12 @@ const defaultTopmostContainer = {
 const mergedTopmostContainer = mergeConfigs({}, defaultTopmostContainer, topmostContainer);
 
 const navigationItems: ButtonProps[] = [
-  { label: 'Les Succulentes', href: '#les-succulentes' },
-  { label: 'Vision', href: '#vision' },
-  { label: 'La Créatrice', href: '#creatrice' },
-  { label: 'Autres Collections', href: '#autres-collections' },
-  { label: 'Joaillerie sur mesure', href: '#joaillerie-sur-mesure' },
-  { label: 'Contactez-moi', href: '#contactez-moi' },
+  { label: t.nav.succulentes.label, href: t.nav.succulentes.href },
+  { label: t.nav.vision.label, href: t.nav.vision.href },
+  { label: t.nav.creator.label, href: t.nav.creator.href },
+  { label: t.nav.otherCollections.label, href: t.nav.otherCollections.href },
+  { label: t.nav.bespokeJewelry.label, href: t.nav.bespokeJewelry.href },
+  { label: t.nav.contact.label, href: t.nav.contact.href },
 ];
 
 const socialIcons: ButtonProps[] = [
@@ -182,8 +187,10 @@ const isProd = import.meta.env.PROD;
           class: 'w-48 text-normal hover:text-normal',
         }}
         socialActions={socialIcons}
-        disclaimer="Les créations présentées illustrent mon travail et parfois des collaborations. Chaque projet sur mesure est unique : résultats, délais et finitions varient selon le cahier des charges, les matériaux et votre implication. En commandant, vous acceptez la singularité et les éventuels ajustements du processus de conception et de fabrication."
-        footnote="© 2026 <strong>Sofía Moreno</strong>. Tous droits réservés. - 50 Avenue Champs-Élysées, 75008 Paris, France - SIRET 100 236 124 00010 - TVA FR42 100236124"
+        disclaimer={t.footer.disclaimer}
+        footnote={t.footer.footnote}
+        showLanguageToggle
+        languageToggleAlign='right'
       />
 
       <Modal
@@ -194,6 +201,10 @@ const isProd = import.meta.env.PROD;
         <NavigationTree
           items={navigationItems}
           defaultItemConfig={{ variant: 'link', size: 'xl', 'data-modal-close': '' }}
+        />
+        <LanguageToggle
+          class="absolute bottom-4 right-4 z-10"
+          defaultButtonConfig={{ variant: 'link', class: 'p-0' }}
         />
       </Modal>
     </Container>
