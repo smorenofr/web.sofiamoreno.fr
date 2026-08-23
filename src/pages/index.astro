@@ -12,7 +12,7 @@ import ItemsTimeline from '~/components/blocks/composite/ItemsTimeline.astro';
 import CallToAction from '~/components/blocks/composite/CallToAction.astro';
 ---
 
-<Layout>
+<Layout langCode="en">
   <!-- Hero Section -->
   <Container
     minHeight="h-screen"
@@ -25,30 +25,30 @@ import CallToAction from '~/components/blocks/composite/CallToAction.astro';
   >
     <Headline
       class="absolute left-1/2 top-3/4 md:left-3/4 md:top-1/2 -translate-x-1/2 -translate-y-1/2"
-      title="Les Succulentes"
+      title="The Succulents"
     />
   </Container>
 
   <!-- Blockquote Section -->
   <Container>
     <blockquote class="text-center">
-      La force peut être douce. <br />La nature devient architecture. <br />Le bijou devient vivant.
+      Strength can be gentle. <br />Nature becomes architecture. <br />Jewelry becomes alive.
     </blockquote>
   </Container>
 
-  <!-- Les Succulentes Section -->
+  <!-- The Succulents Section -->
   <Container background={{ class: 'bg-surface' }}>
-    <Headline anchorId="les-succulentes" title="Les Succulentes" />
+    <Headline anchorId="the-succulents" title="The Succulents" />
     <p class="text-center">
-      Les Succulentes est née d'une plante capable de survivre dans le désert. Elle retient l'eau.
-      Elle transforme l'aridité en force. Chaque pièce s'inspire de cette résilience. Formes
-      organiques. Volumes sculpturaux. Mouvement fluide. <br />
-      La collection intègre également du cuir vegan d'origine cactus, matière innovante et responsable,
-      en écho direct à son inspiration végétale. Il devient lien, structure ou écrin, prolongeant l'histoire
-      de la plante jusque dans le bijou.
+      The Succulents was born from a plant capable of surviving in the desert. It retains water. It
+      transforms aridity into strength. Each piece is inspired by this resilience. Organic forms.
+      Sculptural volumes. Fluid movement. <br />
+      The collection also incorporates vegan leather from cactus, an innovative and responsible material,
+      in direct echo to its botanical inspiration. It becomes a link, structure or case, extending the
+      story of the plant into the jewelry itself.
       <br />
-      <i>Les Succulentes n'est pas une collection.</i>
-      <strong>C'est une déclaration.</strong>
+      <i>The Succulents is not a collection.</i>
+      <strong>It's a statement.</strong>
     </p>
 
     <div class="w-screen relative left-1/2 -translate-x-1/2 overflow-x-clip">
@@ -59,7 +59,7 @@ import CallToAction from '~/components/blocks/composite/CallToAction.astro';
         >
           <Image
             src="~/assets/images/succulentes/01.jpg"
-            alt="Pendentif succulentes rouges"
+            alt="Red succulents pendant"
             layout="responsive"
             class="rounded-lg border border-elevated shadow"
           />
@@ -70,7 +70,7 @@ import CallToAction from '~/components/blocks/composite/CallToAction.astro';
         >
           <Image
             src="~/assets/images/succulentes/02.jpg"
-            alt="Bague succulentes vertes"
+            alt="Green succulents ring"
             layout="responsive"
             class="rounded-lg border border-elevated shadow"
           />
@@ -81,7 +81,7 @@ import CallToAction from '~/components/blocks/composite/CallToAction.astro';
         >
           <Image
             src="~/assets/images/succulentes/03.jpg"
-            alt="Chokers succulentes rouges"
+            alt="Red succulents chokers"
             layout="responsive"
             class="rounded-lg border border-elevated shadow"
           />
@@ -92,7 +92,7 @@ import CallToAction from '~/components/blocks/composite/CallToAction.astro';
         >
           <Image
             src="~/assets/images/succulentes/04.jpg"
-            alt="Fermoire choker verte"
+            alt="Green choker clasp"
             layout="responsive"
             class="rounded-lg border border-elevated shadow"
           />
@@ -103,7 +103,7 @@ import CallToAction from '~/components/blocks/composite/CallToAction.astro';
         >
           <Image
             src="~/assets/images/succulentes/05.jpg"
-            alt="Pendentif succulentes noires"
+            alt="Black succulents pendant"
             layout="responsive"
             class="rounded-lg border border-elevated shadow"
           />
@@ -120,29 +120,26 @@ import CallToAction from '~/components/blocks/composite/CallToAction.astro';
       spacing={{ margin: 'mt-12 md:mt-16 lg:mt-20' }}
     >
       <div slot="left" class="h-full flex flex-col justify-center">
-        <p>
-          Les succulentes poussent sous le soleil du Mexique. Dans la terre aride, elles retiennent
-          l'essentiel.
-        </p>
+        <p>Succulents grow under the Mexican sun. In arid soil, they retain the essential.</p>
         <p class="text-center">
           <strong>
-            Elles résistent.<br />
-            Elles s'adaptent.<br />
-            Elles se transforment.</strong
+            They resist.<br />
+            They adapt.<br />
+            They transform.</strong
           >
         </p>
         <p>
-          Les Succulentes est née de cette mémoire. Une collection inspirée par la résilience
-          mexicaine et la force silencieuse des femmes.
+          The Succulents was born from this memory. A collection inspired by Mexican resilience and
+          the silent strength of women.
         </p>
         <p>
-          Pensée pour être modulable, transformable, adaptable à celle qui la porte, elle offre des
-          possibilités de personnalisation infinies. Chaque pièce évolue. Elle se compose, se
-          recompose, se réinvente.
+          Designed to be modular, transformable, adaptable to the wearer, it offers infinite
+          customization possibilities. Each piece evolves. It composes, recomposes, reinvents
+          itself.
         </p>
         <p>
-          <strong>Rien n'est figé.</strong> La transformation fait partie de sa nature. La résilience
-          n'est pas rigidité. C'est mouvement.
+          <strong>Nothing is fixed.</strong> Transformation is part of its nature. Resilience is not rigidity.
+          It's movement.
         </p>
       </div>
       <div slot="right">
@@ -173,45 +170,43 @@ import CallToAction from '~/components/blocks/composite/CallToAction.astro';
     imageOnLeft
     image={{
       src: '~/assets/images/vision/vision.png',
-      alt: 'Pendentif obsidienne',
+      alt: 'Obsidian pendant',
       layout: 'responsive',
       class: 'rounded-lg shadow',
     }}
     contentSlotClass="h-full flex flex-col justify-center"
   >
     <p>
-      <strong>Redonner à la joaillerie sa dimension humaine et vivante.</strong>
+      <strong>Restoring jewelry's human and living dimension.</strong>
+    </p>
+    <p>Sofía Moreno is a jewelry studio founded in Paris, nourished by Mexican roots.</p>
+    <p>
+      We create bespoke pieces and capsule collections where technology dialogues with emotion, and
+      where rigor meets joy of living.
     </p>
     <p>
-      Sofía Moreno est un studio de joaillerie fondé à Paris, nourri par des racines mexicaines.
+      Each piece of jewelry is conceived as a living object. It evolves. It transforms. It
+      accompanies life's movements.
     </p>
     <p>
-      Nous créons des pièces sur mesure et des collections capsules où la technologie dialogue avec
-      l'émotion, et où la rigueur rencontre la joie de vivre.
+      Our approach connects:<br />
+      - the precision of 3D modeling<br />
+      - craftsmanship<br />
+      - responsible materials<br />
+      - the solar and symbolic energy of Mexico<br />
     </p>
     <p>
-      Chaque bijou est pensé comme un objet vivant. Il évolue. Il se transforme. Il accompagne les
-      mouvements de la vie.
-    </p>
-    <p>
-      Notre approche relie :<br />
-      - la précision de la modélisation 3D<br />
-      - le savoir-faire<br />
-      - des matières responsables<br />
-      - l'énergie solaire et symbolique du Mexique<br />
-    </p>
-    <p>
-      Nous croyons en une joaillerie libre, sincère et lumineuse.<br />
-      Un luxe artistique qui célèbre la transformation, l'audace et la joie d'exister.
+      We believe in free, sincere and luminous jewelry.<br />
+      An artistic luxury that celebrates transformation, boldness and the joy of existing.
     </p>
   </Content>
 
-  <!-- La Créatrice Section -->
+  <!-- The Creator Section -->
   <Content
     container={{ background: { class: 'bg-surface' } }}
     headline={{
-      title: 'La Créatrice',
-      anchorId: 'creatrice',
+      title: 'The Creator',
+      anchorId: 'creator',
     }}
     image={{
       src: '~/assets/images/me-smoreno.jpeg',
@@ -221,44 +216,40 @@ import CallToAction from '~/components/blocks/composite/CallToAction.astro';
     }}
     contentSlotClass="h-full flex flex-col justify-center"
   >
+    <p>She was born in Mexico. A country of intense colors, powerful symbols, resilience.</p>
     <p>
-      Elle est née au Mexique. Un pays de couleurs intenses, de symboles puissants, de résilience.
+      In Italy, she studies jewelry engineering.<br />
+      There she learns 3D modeling, rigor, precision, the demand for detail.
     </p>
     <p>
-      En Italie, elle étudie l'ingénierie joaillière.<br />
-      Elle y apprend la modélisation 3D, la rigueur, la précision, l'exigence du détail..
+      In Paris, within prestigious houses, she participates in the development of iconic
+      collections.
     </p>
-    <p>
-      À Paris, au sein de grandes maisons, elle participe au développement de collections
-      emblématiques.
-    </p>
-    <p>Aujourd'hui, elle relie ces trois mondes, et elle y va au bout de ses rêves.</p>
+    <p>Today, she connects these three worlds, and pursues her dreams to the fullest.</p>
   </Content>
 
-  <!-- Autres Collections Section -->
+  <!-- Other Collections Section -->
   <Container>
-    <Headline anchorId="autres-collections" title="Autres Collections" />
+    <Headline anchorId="other-collections" title="Other Collections" />
     <div class="text-center">
       <p>
-        Nous travaillons des métaux précieux responsables, sélectionnés auprès de partenaires
-        engagés et certifiés. <strong>L'obsidienne dorée</strong>, pierre volcanique mexicaine, est
-        au cœur de certaines créations. Miroir noir aux reflets solaires, matière ancestrale, elle
-        relie passé et modernité.
+        We work with responsible precious metals, selected from committed and certified partners.
+        <strong>Golden obsidian</strong>, a Mexican volcanic stone, is at the heart of certain
+        creations. A black mirror with solar reflections, ancestral material, it connects past and
+        modernity.
       </p>
       <p>
-        <strong>Le cuir vegan d'origine cactus</strong> s'intègre également à nos pièces. Issu d'un savoir-faire
-        innovant mexicain, il devient parfois structure, lien ou écrin. Une alternative contemporaine
-        et responsable qui affirme l'identité de la maison.
+        <strong>Vegan leather from cactus</strong> also integrates into our pieces. Born from innovative
+        Mexican craftsmanship, it sometimes becomes structure, link or case. A contemporary and responsible
+        alternative that affirms the house's identity.
       </p>
       <p>
-        D'autres collections explorent des matières rares et des <strong
-          >couleurs pleines de vie</strong
-        >. Pierres profondes, nuances intenses, transparences lumineuses. Des contrastes forts qui
-        évoquent la chaleur, l'énergie et la joie.
+        Other collections explore rare materials and <strong>colors full of life</strong>. Deep
+        stones, intense nuances, luminous transparencies. Strong contrasts that evoke warmth, energy
+        and joy.
       </p><p>
-        <strong>Formes concentriques</strong>, basées sur les proportions d'or, jouant avec les
-        géométries. Chaque matière est choisie pour sa beauté, sa symbolique et sa traçabilité. Elle
-        porte une histoire.
+        <strong>Concentric forms</strong>, based on golden proportions, playing with geometries.
+        Each material is chosen for its beauty, symbolism and traceability. It carries a story.
       </p>
     </div>
 
@@ -270,7 +261,7 @@ import CallToAction from '~/components/blocks/composite/CallToAction.astro';
         >
           <Image
             src="~/assets/images/autres/01.png"
-            alt="Pendentif obsidienne porté"
+            alt="Obsidian pendant worn"
             layout="responsive"
             class="rounded-lg border border-elevated shadow"
           />
@@ -281,7 +272,7 @@ import CallToAction from '~/components/blocks/composite/CallToAction.astro';
         >
           <Image
             src="~/assets/images/autres/02.jpg"
-            alt="Pendentif caleidoscope porté"
+            alt="Kaleidoscope pendant worn"
             layout="responsive"
             class="rounded-lg border border-elevated shadow"
           />
@@ -292,7 +283,7 @@ import CallToAction from '~/components/blocks/composite/CallToAction.astro';
         >
           <Image
             src="~/assets/images/autres/03.jpg"
-            alt="Choker tunnel concentrique"
+            alt="Concentric tunnel choker"
             layout="responsive"
             class="rounded-lg border border-elevated shadow"
           />
@@ -303,7 +294,7 @@ import CallToAction from '~/components/blocks/composite/CallToAction.astro';
         >
           <Image
             src="~/assets/images/autres/04.jpg"
-            alt="Bracelet naissance"
+            alt="Birth bracelet"
             layout="responsive"
             class="rounded-lg border border-elevated shadow"
           />
@@ -314,7 +305,7 @@ import CallToAction from '~/components/blocks/composite/CallToAction.astro';
         >
           <Image
             src="~/assets/images/autres/05.jpg"
-            alt="Bracelent amitié"
+            alt="Friendship bracelet"
             layout="responsive"
             class="rounded-lg border border-elevated shadow"
           />
@@ -323,12 +314,12 @@ import CallToAction from '~/components/blocks/composite/CallToAction.astro';
     </div>
   </Container>
 
-  <!-- Joaillerie sur mesure Section -->
+  <!-- Bespoke Jewelry Section -->
   <Content
     container={{ background: { class: 'bg-surface' } }}
     headline={{
-      anchorId: 'joaillerie-sur-mesure',
-      title: 'Joaillerie sur mesure',
+      anchorId: 'bespoke-jewelry',
+      title: 'Bespoke Jewelry',
     }}
     image={{
       src: '~/assets/images/sur mesure/02.png',
@@ -346,23 +337,23 @@ import CallToAction from '~/components/blocks/composite/CallToAction.astro';
         {
           icon: { name: 'tabler:bulb' },
           title: 'Intention',
-          content: 'Nous définissons votre histoire, vos symboles, votre moment.',
+          content: 'We define your story, your symbols, your moment.',
         },
         {
           icon: { name: 'tabler:brush' },
-          title: 'Visualisation',
-          content: 'Nous dessinons la pièce avec vous.',
+          title: 'Visualization',
+          content: 'We design the piece with you.',
         },
         {
           icon: { name: 'tabler:mouse' },
           title: 'Transformation',
           content:
-            "Nous ajustons et transformons le design en 3D. Les volumes, les proportions et les détails sont affinés jusqu'à l'équilibre parfait.",
+            'We adjust and transform the design in 3D. Volumes, proportions and details are refined until the perfect balance.',
         },
         {
           icon: { name: 'tabler:diamond' },
           title: 'Fabrication',
-          content: 'La pièce est réalisée  en métaux précieux.',
+          content: 'The piece is crafted in precious metals.',
         },
       ]}
     />
@@ -371,14 +362,14 @@ import CallToAction from '~/components/blocks/composite/CallToAction.astro';
   <!-- Call to Action Section -->
   <CallToAction
     headline={{
-      anchorId: 'contactez-moi',
-      title: 'Contactez-moi',
+      anchorId: 'contact-me',
+      title: 'Contact Me',
       subtitle:
-        'Remplissez le formulaire pour discuter de votre projet de bijou sur mesure, ou pour toute question sur les collections.',
+        'Fill out the form to discuss your bespoke jewelry project, or for any questions about the collections.',
     }}
     actions={[
       {
-        label: 'Remplissez le formulaire',
+        label: 'Fill out the form',
         icon: { name: 'tabler:category' },
         intent: 'primary',
         size: 'lg',
@@ -388,7 +379,7 @@ import CallToAction from '~/components/blocks/composite/CallToAction.astro';
         target: '_blank',
       },
       {
-        label: 'Contactez-moi',
+        label: 'Contact me',
         icon: { name: 'tabler:mail' },
         intent: 'secondary',
         size: 'lg',
