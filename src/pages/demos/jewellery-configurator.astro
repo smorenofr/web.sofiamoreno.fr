@@ -4,6 +4,7 @@ import Configurator from '~/components/blocks/composite/Configurator.astro';
 import type { ConfiguratorProps } from '~/types/configurator.types';
 import type { ImageProps } from '~/types/image.types';
 import type { ModelViewerMutation } from '~/types/modelviewer.types';
+import Container from '~/components/blocks/layout/Container.astro';
 
 const metadata = { title: { default: 'Jewellery configurator' } };
 
@@ -198,6 +199,7 @@ const layout: ConfiguratorProps['layout'] = {
   air: 'none',
   leftColumn: { class: 'pb-10 text-center md:border-r md:border-border' },
   rightColumn: { class: 'md:contain-size md:overflow-y-auto' },
+  border: { width: 'border-t', color: 'border-elevated' },
 };
 
 const summary: ConfiguratorProps['summary'] = {
@@ -239,6 +241,7 @@ const actions: ConfiguratorProps['actions'] = [
 ---
 
 <Layout metadata={metadata}>
+  <Container />
   <Configurator
     categories={categories}
     viewer={viewer}
