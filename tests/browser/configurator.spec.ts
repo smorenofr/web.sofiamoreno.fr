@@ -1,4 +1,5 @@
 import { expect, test, type Locator, type Page } from '@playwright/test';
+import { expectFocusRing } from './focusRing';
 
 const PAGE_URL = '/demos/jewellery-configurator';
 // SwiftShader renders on the CPU; first load includes compiling three's shaders.
@@ -43,6 +44,16 @@ async function settledShot(root: Locator): Promise<Buffer> {
 async function changedShot(root: Locator, from: Buffer): Promise<Buffer> {
   await expect.poll(async () => (await root.screenshot()).equals(from)).toBe(false);
   return settledShot(root);
+}
+
+function collectWarnings(page: Page): string[] {
+  const warnings: string[] = [];
+  page.on('console', (msg) => {
+    if (msg.type() === 'warning' && msg.text().includes('[ModelViewer]')) {
+      warnings.push(msg.text());
+    }
+  });
+  return warnings;
 }
 
 function option(page: Page, group: string, code: string): Locator {
@@ -90,6 +101,43 @@ test.describe('Configurator', () => {
       await expectGridChecked(page, MODEL, ['bold']);
       await expect(root).toHaveAttribute('data-model-viewer-src', '/models/ring-alt.glb');
       await changedShot(root, before);
+    });
+
+    test('recolours the pavé band and accent stones through their material families', async ({
+      page,
+    }) => {
+      const warnings = collectWarnings(page);
+      await open(page);
+      const root = await readyViewer(page);
+      let shot = await settledShot(root);
+      await option(page, MODEL, 'pave').click();
+      await expect(root).toHaveAttribute('data-model-viewer-src', '/models/ring-pave.glb');
+      await expect(root).not.toHaveAttribute('data-model-viewer-loading');
+      shot = await changedShot(root, shot);
+      await openTab(page, 'Color');
+      await option(page, COLOR, 'white').click();
+      shot = await changedShot(root, shot);
+      await openTab(page, 'Clarity');
+      await option(page, CLARITY, 'vs1').click();
+      await changedShot(root, shot);
+      expect(warnings).toEqual([]);
+    });
+
+    test('loads every ring model without viewer warnings', async ({ page }) => {
+      const warnings = collectWarnings(page);
+      await open(page);
+      const root = await readyViewer(page);
+      for (const [code, src] of [
+        ['bold', '/models/ring-alt.glb'],
+        ['pave', '/models/ring-pave.glb'],
+        ['classic', '/models/ring.glb'],
+      ]) {
+        await option(page, MODEL, code).click();
+        await expect(root).toHaveAttribute('data-model-viewer-src', src);
+        await expect(root).not.toHaveAttribute('data-model-viewer-loading');
+        await expect(root).toHaveAttribute('data-model-viewer-state', 'ready');
+      }
+      expect(warnings).toEqual([]);
     });
 
     test('names the model group by its panel heading', async ({ page }) => {
@@ -165,6 +213,17 @@ test.describe('Configurator', () => {
       await openTab(page, 'Engraving');
       await expect(page.getByRole('textbox', { name: 'Engraving' })).toBeVisible();
     });
+
+    test('textArea forwards native attributes to the field', async ({ page }) => {
+      await open(page);
+      await expect(engraving(page)).toHaveAttribute('spellcheck', 'false');
+    });
+
+    test('maxLength set in textArea still limits the engraving', async ({ page }) => {
+      await open(page);
+      await expect(engraving(page)).toHaveAttribute('maxlength', '20');
+      await expect(engraving(page)).toHaveAttribute('placeholder', 'Up to 20 characters');
+    });
   });
 
   test.describe('hidden panels', () => {
@@ -176,7 +235,7 @@ test.describe('Configurator', () => {
   });
 
   test.describe('defaults layering', () => {
-    test('renders grid tiles with the padding from defaultGridConfig', async ({ page }) => {
+    test('renders grid tiles with the padding from defaultItemsGridConfig', async ({ page }) => {
       await open(page);
       await expect(
         option(page, CARAT, 'small').locator('[data-option-variant="unselected"] > div')
@@ -389,5 +448,116 @@ test.describe('Configurator', () => {
       await page.goForward();
       await expect(engraving(page)).toHaveValue('Mia');
     });
+  });
+});
+
+test.describe('trigger layering', () => {
+  test('a category without triggerButton labels its tab with the heading', async ({ page }) => {
+    await page.goto('/documentation/composite/Configurator');
+    const section = page.locator('[data-doc-section="headings"]');
+    await expect(section.getByRole('tab', { name: 'Choose your metal' })).toBeVisible();
+  });
+
+  test('active tab stays distinct when tabs.defaultItemConfig styles every trigger', async ({
+    page,
+  }) => {
+    await page.goto('/documentation/composite/Configurator');
+    const section = page.locator('[data-doc-section="layering"]');
+    const active = section.locator('[role="tab"][aria-selected="true"]:visible');
+    const inactive = section.locator('[role="tab"][aria-selected="false"]:visible').first();
+
+    await expect(active).toHaveCSS('border-top-width', '2px');
+    await expect(inactive).toHaveCSS('border-top-width', '0px');
+  });
+});
+
+test.describe('text panel attributes', () => {
+  test('consumer aria-describedby joins the field help and counter', async ({ page }) => {
+    await page.goto('/documentation/composite/Configurator');
+    const field = page.locator('[data-doc-section="described"] textarea');
+    const id = await field.getAttribute('id');
+
+    await expect(field).toHaveAttribute(
+      'aria-describedby',
+      `${id}-help ${id}-counter configurator-doc-engraving-note`
+    );
+    await expect(field).toHaveAccessibleDescription(/Engraved in capitals\./);
+    await expect(field).toHaveAccessibleDescription(/Engraving takes two working days\./);
+  });
+});
+
+test.describe('panel intent', () => {
+  async function activateTab(section: Locator, name: string): Promise<void> {
+    const tab = section.getByRole('tab', { name });
+    await tab.focus();
+    await tab.press('Enter');
+    await expect(tab).toHaveAttribute('aria-selected', 'true');
+  }
+
+  for (const { section: name, prefix } of [
+    { section: 'intent', prefix: 'configurator-doc-intent' },
+    { section: 'intent-neutral', prefix: 'configurator-doc-intent-neutral' },
+  ]) {
+    test(`${name}: one intent gives toggle, grid and text panels the same selected and focus colour`, async ({
+      page,
+    }) => {
+      await page.goto('/documentation/composite/Configurator');
+      const section = page.locator(`[data-doc-section="${name}"]`);
+      const grid = section.locator(`[data-selection-group="${prefix}-stone"]`);
+      const toggle = section.locator(`[data-selection-group="${prefix}-metal"]`);
+      const text = section.locator(`[data-selection-group="${prefix}-engraving"]`);
+
+      await activateTab(section, 'Stone');
+      await expect(grid.locator('[role="radio"]').first()).toBeAttached();
+      const gridSelected = grid.locator('[data-option-variant="selected"]:visible > *');
+      const reference = await gridSelected.evaluate((el) => getComputedStyle(el).borderBottomColor);
+      const gridOption = grid.locator('[data-option-code][aria-checked="true"]');
+      await gridOption.focus();
+      await expectFocusRing(gridOption, reference);
+
+      await activateTab(section, 'Metal');
+      const toggleShell = toggle.locator('label:has(input:checked)');
+      await expect(toggleShell.locator('[data-option-variant="selected"]')).toHaveCSS(
+        'background-color',
+        reference
+      );
+      await toggleShell.locator('input').focus();
+      await expectFocusRing(toggleShell, reference);
+
+      await activateTab(section, 'Engraving');
+      const field = text.locator('textarea');
+      await field.focus();
+      await expect(field).toHaveCSS('border-color', reference);
+      await expectFocusRing(field, reference);
+    });
+  }
+});
+
+test.describe('panel slots', () => {
+  function panelSection(page: Page): Locator {
+    return page.locator('[data-doc-section="panel-class"]');
+  }
+
+  test('heading and control are direct children of the tab panel', async ({ page }) => {
+    await page.goto('/documentation/composite/Configurator');
+    const panel = panelSection(page).locator('[data-tab-panel="0"]');
+
+    await expect(panel.locator(':scope > h3')).toHaveCount(1);
+    await expect(panel.locator(':scope > [data-selection-group]')).toHaveCount(1);
+  });
+
+  test('panelClass gap separates heading and control', async ({ page }) => {
+    await page.goto('/documentation/composite/Configurator');
+    const panel = panelSection(page).locator('[data-tab-panel="0"]');
+    const heading = await panel.locator('h3').boundingBox();
+    const control = await panel.locator('[data-selection-group]').boundingBox();
+
+    expect(control!.y - (heading!.y + heading!.height)).toBeCloseTo(16, 0);
+  });
+
+  test('unused slots render no panel', async ({ page }) => {
+    await page.goto('/documentation/composite/Configurator');
+
+    await expect(panelSection(page).locator('[data-tab-panel]')).toHaveCount(2);
   });
 });

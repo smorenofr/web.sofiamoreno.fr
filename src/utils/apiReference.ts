@@ -2,7 +2,7 @@ import ts from 'typescript';
 import fs from 'node:fs';
 import path from 'node:path';
 import { documentationNavigation } from '~/pages/documentation/navigation';
-import type { ButtonProps } from '~/types/button.types';
+import type { NavigationTreeItem } from '~/types/navigationtree.types';
 
 const SRC_ROOT = path.join(process.cwd(), 'src');
 
@@ -15,7 +15,7 @@ export interface PropRow {
 }
 
 function flattenNav(
-  items: ButtonProps[],
+  items: NavigationTreeItem[],
   acc: Record<string, { label: string; href: string }> = {}
 ): Record<string, { label: string; href: string }> {
   for (const item of items) {
@@ -50,9 +50,12 @@ const INTERFACE_NAME_OVERRIDES: Record<string, string> = {
 };
 
 // Types that document an existing block's Props under another name (e.g. an item type that
-// extends ItemProps), resolved after stripWrapper for the row's link.
+// extends or narrows another block's Props), resolved after stripWrapper for the row's link.
 const TYPE_LINK_ALIASES: Record<string, string> = {
   ItemsGridItem: 'ItemProps',
+  ConfiguratorToggleGroup: 'ToggleGroupProps',
+  ConfiguratorItemsGrid: 'ItemsGridProps',
+  ConfiguratorTextArea: 'TextAreaProps',
 };
 
 function typesFilePath(componentName: string): string {
@@ -110,9 +113,9 @@ function parseInterfaceFields(
   return [...inheritedFields, ...ownFields];
 }
 
-// Returns the plain identifier an interface extends (e.g. `ButtonProps` in
-// `interface ThemeToggleProps extends ButtonProps {}`), or undefined for no
-// heritage clause or a non-identifier heritage type (e.g. `Omit<X, 'y'>`).
+// Returns the type an interface extends, unwrapped by `stripWrapper` (`ButtonProps` for both
+// `extends ButtonProps` and `extends Omit<ButtonProps, 'y'>`), or undefined without a
+// heritage clause. Only the first type of each clause is read.
 function findExtendsIdentifier(
   sourceFile: ts.SourceFile,
   interfaceName: string
@@ -121,9 +124,9 @@ function findExtendsIdentifier(
   ts.forEachChild(sourceFile, (node) => {
     if (ts.isInterfaceDeclaration(node) && node.name.text === interfaceName) {
       for (const clause of node.heritageClauses ?? []) {
-        const expr = clause.types[0]?.expression;
-        if (expr && ts.isIdentifier(expr)) {
-          result = expr.text;
+        const heritage = clause.types[0];
+        if (heritage && ts.isIdentifier(heritage.expression)) {
+          result = stripWrapper(heritage.getText(sourceFile));
         }
       }
     }
@@ -163,10 +166,17 @@ function parseDefaults(astroSourceText: string): Record<string, string> {
   return defaults;
 }
 
-function stripWrapper(type: string): string {
+export function stripWrapper(type: string): string {
   return type
+    .replace(/\s+/g, ' ')
+    .replace(/<\s/g, '<')
+    .replace(/\s>/g, '>')
+    .trim()
+    .replace(/^false\s*\|\s*/, '')
+    .replace(/(?:\s*\|\s*(?:false|null|undefined))+$/, '')
     .replace(/\[\]$/, '')
-    .replace(/^Partial<(.+)>$/, '$1')
+    .replace(/^(?:Partial|LayerConfig)<(.+)>$/, '$1')
+    .replace(/^Omit<(\w+),.+>$/, '$1')
     .trim();
 }
 

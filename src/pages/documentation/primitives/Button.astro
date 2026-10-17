@@ -2,11 +2,17 @@
 import Layout from '../_layouts/Layout.astro';
 import ButtonBlock from '~/components/blocks/primitives/Button.astro';
 import ApiReferenceTable from '~/components/meta/ApiReferenceTable.astro';
+import type { NavigationTreeItem } from '~/types/navigationtree.types';
 
 const metadata = {
   title: {
     default: 'Button',
   },
+};
+
+const menuItem: NavigationTreeItem = {
+  label: 'Products',
+  children: [{ label: 'Laptops', href: '/products/laptops' }],
 };
 ---
 
@@ -38,24 +44,29 @@ const metadata = {
     <ButtonBlock label="Extra Large" size="xl" />
   </div>
 
-  <h3>Vertical Layout</h3>
+  <h3>Vertical Orientation</h3>
   <p>
-    The <code>layout</code> prop stacks the icon or image above the label. It has no literal default:
+    The <code>orientation</code> prop stacks the icon or image above the label. It has no literal default:
     without it, a button resolves to vertical only when a <code>subtitle</code> is set. An explicit value
     always wins.
   </p>
   <div class="flex flex-wrap items-start gap-4">
     <ButtonBlock
-      layout="vertical"
+      orientation="vertical"
       icon={{ name: 'heroicons:cube' }}
       label="Extra Small"
       size="xs"
     />
-    <ButtonBlock layout="vertical" icon={{ name: 'heroicons:cube' }} label="Small" size="sm" />
-    <ButtonBlock layout="vertical" icon={{ name: 'heroicons:cube' }} label="Medium" size="md" />
-    <ButtonBlock layout="vertical" icon={{ name: 'heroicons:cube' }} label="Large" size="lg" />
+    <ButtonBlock orientation="vertical" icon={{ name: 'heroicons:cube' }} label="Small" size="sm" />
     <ButtonBlock
-      layout="vertical"
+      orientation="vertical"
+      icon={{ name: 'heroicons:cube' }}
+      label="Medium"
+      size="md"
+    />
+    <ButtonBlock orientation="vertical" icon={{ name: 'heroicons:cube' }} label="Large" size="lg" />
+    <ButtonBlock
+      orientation="vertical"
       icon={{ name: 'heroicons:cube' }}
       label="Extra Large"
       size="xl"
@@ -79,7 +90,7 @@ const metadata = {
       }}
     />
     <ButtonBlock
-      layout="vertical"
+      orientation="vertical"
       label="Vertical Image"
       image={{
         src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4',
@@ -119,7 +130,7 @@ const metadata = {
   </p>
   <div class="flex flex-wrap items-start gap-4">
     <ButtonBlock
-      layout="vertical"
+      orientation="vertical"
       label="Default Size"
       image={{
         src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4',
@@ -129,7 +140,7 @@ const metadata = {
       }}
     />
     <ButtonBlock
-      layout="vertical"
+      orientation="vertical"
       label="Explicit Override"
       imageSize="size-12"
       image={{
@@ -275,6 +286,12 @@ const metadata = {
       icon={{ name: 'heroicons:arrow-top-right-on-square' }}
       iconPosition="right"
     />
+  </div>
+
+  <h3>Spreading an item config</h3>
+  <p>A nav item can be spread onto a Button as is. Its <code>children</code> are not rendered.</p>
+  <div class="flex flex-wrap gap-4" data-doc-section="children">
+    <ButtonBlock {...menuItem} />
   </div>
 
   <ApiReferenceTable component="Button" category="primitives" />
