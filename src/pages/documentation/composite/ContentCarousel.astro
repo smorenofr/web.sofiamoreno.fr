@@ -141,6 +141,68 @@ const sampleImages = [
     </div>
   </section>
 
+  <section class="mb-16">
+    <h2>Button Config</h2>
+    <p class="mb-4">
+      <code>defaultIndicatorButtonConfig</code>, <code>pauseButton</code> and <code>playButton</code
+      >
+      reach their buttons, and the autoplay toggle keeps the labels you set.
+    </p>
+    <div class="border border-border rounded-lg p-4" data-doc-section="button-config">
+      <ContentCarouselBlock
+        items={sampleImages.slice(0, 3)}
+        controlsPosition="outside"
+        autoplay={{ enabled: true, delay: 3000, pauseOnHover: false }}
+        defaultIndicatorButtonConfig={{ shape: 'square', 'data-test': 'indicator' }}
+        pauseButton={{ 'aria-label': 'Stop slideshow' }}
+        playButton={{ 'aria-label': 'Start slideshow' }}
+      />
+    </div>
+  </section>
+
+  <section class="mb-16">
+    <h2>Container</h2>
+    <p class="mb-4">
+      <code>container</code> wraps the carousel in a Container; carousel attributes stay on the inner
+      root. Without it no wrapper is rendered.
+    </p>
+    <div data-doc-section="container">
+      <ContentCarouselBlock
+        items={sampleImages.slice(0, 3)}
+        container={{ background: { class: 'bg-surface' }, spacing: { padding: 'p-6' } }}
+      />
+    </div>
+  </section>
+
+  <section class="mb-16">
+    <h2>Indicator Class</h2>
+    <p class="mb-4">
+      <code>defaultIndicatorButtonConfig.class</code> can recolour the selected indicator.
+    </p>
+    <div data-doc-section="indicator-class">
+      <ContentCarouselBlock
+        items={sampleImages.slice(0, 3)}
+        defaultIndicatorButtonConfig={{ class: 'aria-selected:bg-accent' }}
+      />
+    </div>
+  </section>
+
+  <section class="mb-16">
+    <h2>Image Config</h2>
+    <p class="mb-4">
+      <code>defaultImageConfig</code> reaches every slide image; a slide's <code>class</code> stays on
+      its wrapper. The image optimiser writes <code>object-fit</code> inline: <code>cover</code>, or
+      <code>contain</code> with <code>layout: 'contained'</code>. Change it through
+      <code>layout</code>, not a class.
+    </p>
+    <div data-doc-section="image-config">
+      <ContentCarouselBlock
+        items={sampleImages.slice(0, 3)}
+        defaultImageConfig={{ class: 'rounded-xl' }}
+      />
+    </div>
+  </section>
+
   <ApiReferenceTable component="ContentCarousel" category="composite" />
 
   <section class="mb-16">
@@ -159,7 +221,9 @@ const sampleImages = [
           <code>controlsPosition</code>: <code>'inside'</code> (overlay) or <code>'outside'</code> (adjacent)
         </li>
         <li>
-          <code>showIndicators</code>, <code>showControls</code>: Toggle navigation elements
+          Hide prev/next with <code>{'prevButton={false}'}</code> / <code
+            >{'nextButton={false}'}</code
+          >; indicators with <code>{'showIndicators={false}'}</code>
         </li>
         <li>
           <code>draggable</code>: Enable/disable pointer drag navigation (default: <code>true</code

@@ -7,6 +7,7 @@ import ApiReferenceTable from '~/components/meta/ApiReferenceTable.astro';
 import type { ModelViewerProps } from '~/types/modelviewer.types';
 
 const presets = ['studio', 'neutral', 'soft'] as const;
+const hdr = '/hdr/studio_small_08_1k.hdr';
 
 const ringSelections: ModelViewerProps['selections'] = {
   'modelviewer-doc-model': {
@@ -137,6 +138,90 @@ const metadata = {
     }
   </div>
 
+  <h3>Environment</h3>
+  <p>
+    Set <code>environment.src</code> to a <code>.hdr</code> file to light and reflect the model from a
+    real studio instead of the generated one. <code>environment.rotation</code> turns it, in degrees,
+    to place the highlights.
+  </p>
+  <p>
+    Pair an HDR with <code>lighting="neutral"</code>: the preset still sets the key light, shadow
+    and environment intensity, but its blur only applies to the generated environment. Tune overall
+    brightness with <code>exposure</code>. The HDR is never drawn behind the model, so set a
+    background with <code>class</code>. If the file fails to load, the viewer falls back to the
+    generated environment.
+  </p>
+  <div
+    data-doc-section="environment"
+    class="grid gap-4 border border-dashed border-gray/80 p-8 md:grid-cols-2"
+  >
+    <ModelViewerBlock
+      src="/models/ring.glb"
+      label="A ring lit by a studio HDR"
+      lighting="neutral"
+      environment={{ src: hdr }}
+      height="300px"
+    />
+    <ModelViewerBlock
+      src="/models/ring.glb"
+      label="A ring lit by the same studio HDR turned half a turn"
+      lighting="neutral"
+      environment={{ src: hdr, rotation: 180 }}
+      height="300px"
+    />
+  </div>
+  <p>
+    <code>environment.autoRotate</code> spins the environment so reflections move across the piece while
+    the model and camera stay still; <code>environment.autoRotateSpeed</code> uses the same scale as <code
+      >autoRotateSpeed</code
+    >. It keeps turning while the user drags and is ignored when the visitor prefers reduced motion.
+  </p>
+  <div data-doc-section="environment-spin" class="border border-dashed border-gray/80 p-8">
+    <ModelViewerBlock
+      src="/models/ring.glb"
+      label="A ring with reflections moving across it"
+      lighting="neutral"
+      environment={{ src: hdr, autoRotate: true }}
+    />
+  </div>
+
+  <h3>Bloom</h3>
+  <p>
+    Set <code>bloom</code> to make the highlights on stones glow. Only diamond-like materials (index of
+    refraction 2 or more) glow; metal and everything else stay as they are. It draws the scene a second
+    time and adds post-processing passes on every frame while the view moves, so use it where the sparkle
+    matters.
+  </p>
+  <p>
+    Only stone highlights brighter than white, before tone mapping, glow. Pair it with
+    <code>lighting="neutral"</code> and an HDR <code>environment</code>; the dimmer presets leave
+    little bright enough to glow. <code>exposure</code> brightens the glow with the rest of the image
+    but does not change which highlights glow. The canvas stays transparent. The glow does not animate
+    on its own; glints move as the camera or environment turns.
+  </p>
+  <div
+    data-doc-section="bloom"
+    class="grid gap-4 border border-dashed border-gray/80 p-8 md:grid-cols-2"
+  >
+    <ModelViewerBlock
+      src="/models/ring-pave.glb"
+      label="A pavé ring without bloom"
+      lighting="neutral"
+      environment={{ src: hdr }}
+      shadow
+      height="300px"
+    />
+    <ModelViewerBlock
+      src="/models/ring-pave.glb"
+      label="A pavé ring with glowing highlights"
+      lighting="neutral"
+      environment={{ src: hdr }}
+      shadow
+      bloom
+      height="300px"
+    />
+  </div>
+
   <h3>Configurator</h3>
   <p>
     Pair the viewer with selection blocks such as ToggleGroup and TextArea to build a product
@@ -189,6 +274,14 @@ const metadata = {
     A <code>material</code> edit changes every mesh that uses the named glTF material. Colours are
     <code>#rgb</code> or <code>#rrggbb</code> in sRGB; <code>metalness</code> and
     <code>roughness</code> run from 0 to 1.
+  </p>
+  <p>
+    Some exporters, such as KeyShot, write one material per mesh, named <code>Gold_1</code>,
+    <code>Gold_2</code> and so on. When a model loads, materials whose names differ only by a trailing
+    <code>_&lt;n&gt;</code> and whose glTF definitions are identical are merged into one. A material name
+    also matches its family, the name without that suffix, so
+    <code>material: 'Gold'</code> reaches every <code>Gold_&lt;n&gt;</code> mesh, and each original name
+    still works.
   </p>
   <pre
     class="bg-surface p-4 rounded overflow-x-auto text-sm border border-border"><code>{example(mutationExamples.edit)}</code></pre>

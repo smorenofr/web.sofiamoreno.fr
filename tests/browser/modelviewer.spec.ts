@@ -81,6 +81,17 @@ function diffRatio(page: Page, a: Buffer, b: Buffer): Promise<number> {
   );
 }
 
+async function cornerPixel(page: Page, shot: Buffer): Promise<number[]> {
+  return page.evaluate(async (base64) => {
+    const bitmap = await createImageBitmap(
+      await (await fetch(`data:image/png;base64,${base64}`)).blob()
+    );
+    const context = new OffscreenCanvas(bitmap.width, bitmap.height).getContext('2d')!;
+    context.drawImage(bitmap, 0, 0);
+    return [...context.getImageData(2, 2, 1, 1).data];
+  }, shot.toString('base64'));
+}
+
 function collectWarnings(page: Page): string[] {
   const warnings: string[] = [];
   page.on('console', (message) => {
@@ -441,6 +452,137 @@ test.describe('ModelViewer', () => {
       expect(count(/model "\/models\/missing\.glb"/)).toBe(1);
       expect(warnings.filter((w) => w.includes('modelviewer-doc-band'))).toEqual([]);
       await expect(root).toHaveAttribute('data-model-viewer-state', 'ready');
+    });
+  });
+
+  test.describe('environment', () => {
+    const HDR_REQUEST = /\.hdr(\?|$)/;
+
+    function environmentViewers(page: Page): Locator {
+      return page.locator('[data-doc-section="environment"] model-viewer-block');
+    }
+
+    test('lights the model from the HDR and turns it with rotation', async ({ page }) => {
+      await page.goto(PAGE_URL);
+      const [plain, turned] = [environmentViewers(page).nth(0), environmentViewers(page).nth(1)];
+      await plain.scrollIntoViewIfNeeded();
+      for (const root of [plain, turned]) {
+        await expect(root).toHaveAttribute('data-model-viewer-state', 'ready', {
+          timeout: READY_TIMEOUT,
+        });
+      }
+      expect(
+        await diffRatio(page, await settledShot(plain), await settledShot(turned))
+      ).toBeGreaterThan(0.01);
+    });
+
+    test('falls back and warns when the HDR fails to load', async ({ page }) => {
+      const warnings = collectWarnings(page);
+      await page.route(HDR_REQUEST, (route) => route.fulfill({ status: 404 }));
+      await page.goto(PAGE_URL);
+      await readyViewer(page, 'environment');
+      expect(warnings.some((w) => w.includes('could not be loaded'))).toBe(true);
+    });
+
+    test('a viewer without environment requests no HDR', async ({ page }) => {
+      const hdrRequests: string[] = [];
+      page.on('request', (request) => {
+        if (HDR_REQUEST.test(request.url())) hdrRequests.push(request.url());
+      });
+      await page.goto(PAGE_URL);
+      const root = await readyViewer(page, 'basic');
+      expect(await root.getAttribute('data-model-viewer-config')).not.toContain('environment');
+      expect(hdrRequests).toEqual([]);
+    });
+
+    test('environment spin keeps changing the rendered frame', async ({ page }) => {
+      await page.goto(PAGE_URL);
+      const root = await readyViewer(page, 'environment-spin');
+      const first = await root.screenshot();
+      await expect.poll(async () => (await root.screenshot()).equals(first)).toBe(false);
+    });
+
+    test('environment spin stays still under reduced motion', async ({ page }) => {
+      await page.emulateMedia({ reducedMotion: 'reduce' });
+      await page.goto(PAGE_URL);
+      const root = await readyViewer(page, 'environment-spin');
+      await page.waitForTimeout(300);
+      const first = await root.screenshot();
+      await page.waitForTimeout(600);
+      expect((await root.screenshot()).equals(first)).toBe(true);
+    });
+
+    test('environment spin keeps going after a camera drag', async ({ page }) => {
+      await page.goto(PAGE_URL);
+      const root = await readyViewer(page, 'environment-spin');
+      const box = (await root.boundingBox())!;
+      await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+      await page.mouse.down();
+      await page.mouse.move(box.x + box.width / 2 + 80, box.y + box.height / 2, { steps: 5 });
+      await page.mouse.up();
+      // Lets damping finish so only the spin can change frames.
+      await page.waitForTimeout(1_000);
+      const first = await root.screenshot();
+      await expect.poll(async () => (await root.screenshot()).equals(first)).toBe(false);
+    });
+  });
+
+  test.describe('bloom', () => {
+    const BLOOM_REQUEST = /modelViewerBloom|postprocessing/;
+
+    function bloomViewers(page: Page): [Locator, Locator] {
+      const roots = page.locator('[data-doc-section="bloom"] model-viewer-block');
+      return [roots.nth(0), roots.nth(1)];
+    }
+
+    async function readyBloomPair(page: Page): Promise<[Locator, Locator]> {
+      const [plain, bloomed] = bloomViewers(page);
+      await plain.scrollIntoViewIfNeeded();
+      for (const root of [plain, bloomed]) {
+        await expect(root).toHaveAttribute('data-model-viewer-state', 'ready', {
+          timeout: READY_TIMEOUT,
+        });
+      }
+      return [plain, bloomed];
+    }
+
+    test('bloom changes the rendered frame of the same model', async ({ page }) => {
+      await page.goto(PAGE_URL);
+      const [plain, bloomed] = await readyBloomPair(page);
+      expect(
+        await diffRatio(page, await settledShot(plain), await settledShot(bloomed))
+      ).toBeGreaterThan(0);
+    });
+
+    test('bloom keeps the canvas background transparent', async ({ page }) => {
+      await page.goto(PAGE_URL);
+      const [plain, bloomed] = await readyBloomPair(page);
+      expect(await cornerPixel(page, await settledShot(bloomed))).toEqual(
+        await cornerPixel(page, await settledShot(plain))
+      );
+    });
+
+    test('bloom with a shadow draws without WebGL errors', async ({ page }) => {
+      const glErrors: string[] = [];
+      page.on('console', (message) => {
+        if (message.text().includes('GL_INVALID')) glErrors.push(message.text());
+      });
+      await page.goto(PAGE_URL);
+      const [, bloomed] = await readyBloomPair(page);
+      await settledShot(bloomed);
+      expect(glErrors).toEqual([]);
+    });
+
+    test('post-processing code loads only once a bloom viewer starts', async ({ page }) => {
+      const requests: string[] = [];
+      page.on('request', (request) => {
+        if (BLOOM_REQUEST.test(request.url())) requests.push(request.url());
+      });
+      await page.goto(PAGE_URL);
+      await readyViewer(page, 'basic');
+      expect(requests).toEqual([]);
+      await readyBloomPair(page);
+      expect(requests).not.toEqual([]);
     });
   });
 });

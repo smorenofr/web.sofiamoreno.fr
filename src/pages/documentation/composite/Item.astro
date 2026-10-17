@@ -47,7 +47,7 @@ const metadata = {
       title="Horizontal Layout"
       content="The icon sits to the left, with the title and content left-aligned beside it."
       actions={[{ label: 'Learn More', intent: 'success', size: 'sm' }]}
-      layout="horizontal"
+      orientation="horizontal"
     />
   </div>
 
@@ -69,21 +69,21 @@ const metadata = {
           icon={{ name: 'heroicons:arrow-down-tray', class: 'text-primary' }}
           title="Step 1: Download"
           content="Get started by downloading the template."
-          layout="horizontal"
+          orientation="horizontal"
           showConnector
         />
         <ItemBlock
           icon={{ name: 'heroicons:pencil-square', class: 'text-secondary' }}
           title="Step 2: Customize"
           content="Add your own content and styles."
-          layout="horizontal"
+          orientation="horizontal"
           showConnector
         />
         <ItemBlock
           icon={{ name: 'heroicons:check-circle', class: 'text-success' }}
           title="Step 3: Done"
           content="Ship it!"
-          layout="horizontal"
+          orientation="horizontal"
         />
       </div>
     </div>
@@ -183,7 +183,7 @@ const metadata = {
         }}
         title="Horizontal"
         content="An image works in the horizontal layout too."
-        layout="horizontal"
+        orientation="horizontal"
       />
     </div>
   </div>
@@ -207,7 +207,7 @@ const metadata = {
           }}
           title="Step 1"
           content="An image under showConnector."
-          layout="horizontal"
+          orientation="horizontal"
           showConnector
         />
         <ItemBlock
@@ -219,7 +219,7 @@ const metadata = {
           }}
           title="Step 2"
           content="The last step has no connector."
-          layout="horizontal"
+          orientation="horizontal"
         />
       </div>
     </div>
@@ -276,6 +276,54 @@ const metadata = {
       titleClass="text-sm uppercase tracking-wider"
       textClass="text-xs text-muted"
       mediaClass="size-6"
+    />
+  </div>
+
+  <h3>8. Connector Class</h3>
+  <p>
+    <code>connectorClass</code> styles every visible connector line in either layout. Hidden sides stay
+    transparent.
+  </p>
+  <div class="space-y-8" data-doc-section="connector-class">
+    <div class="border border-border rounded-lg p-6 flex flex-row items-start">
+      <ItemBlock
+        icon={{ name: 'heroicons:user-plus', class: 'text-primary' }}
+        title="Sign Up"
+        showConnectorRight
+        connectorClass="border-primary"
+      />
+      <ItemBlock
+        icon={{ name: 'heroicons:envelope', class: 'text-secondary' }}
+        title="Verify"
+        showConnectorLeft
+        showConnectorRight
+        connectorClass="border-primary"
+      />
+      <ItemBlock
+        icon={{ name: 'heroicons:rocket-launch', class: 'text-success' }}
+        title="Launch"
+        showConnectorLeft
+        connectorClass="border-primary"
+      />
+    </div>
+    <div class="max-w-md border border-border rounded-lg p-6">
+      <ItemBlock
+        icon={{ name: 'heroicons:arrow-down-tray', class: 'text-primary' }}
+        title="Download"
+        showConnector
+        connectorClass="border-primary"
+      />
+    </div>
+  </div>
+
+  <h3>9. Spacing margin</h3>
+  <p><code>spacing.margin</code> lands on the item root next to <code>spacing.padding</code>.</p>
+  <div data-doc-section="spacing-margin">
+    <ItemBlock
+      title="Spaced"
+      content="Pushed down by its own margin."
+      spacing={{ padding: 'p-4', margin: 'mt-8' }}
+      border={{ width: 'border', color: 'border-border' }}
     />
   </div>
 

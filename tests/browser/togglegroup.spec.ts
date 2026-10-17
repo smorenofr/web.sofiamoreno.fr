@@ -183,7 +183,7 @@ test.describe('ToggleGroup', () => {
     });
   });
 
-  test('arrow keys move the selection in the vertical layout', async ({ page }) => {
+  test('arrow keys move the selection in the vertical orientation', async ({ page }) => {
     const root = await openGroup(page, 'togglegroup-doc-vertical');
     await expect(root).toHaveAttribute('aria-orientation', 'vertical');
     await input(root, 'none').focus();
@@ -193,6 +193,13 @@ test.describe('ToggleGroup', () => {
 
     await page.keyboard.press('ArrowUp');
     await expectChecked(root, ['none']);
+  });
+
+  test('option images without alt render alt=""', async ({ page }) => {
+    const root = await openGroup(page, 'togglegroup-doc-font');
+    const images = root.locator('img');
+    await expect(images.first()).toBeAttached();
+    for (const img of await images.all()) await expect(img).toHaveAttribute('alt', '');
   });
 
   test("a hidden label is still the input's accessible name", async ({ page }) => {
@@ -259,4 +266,25 @@ test.describe('ToggleGroup', () => {
     await expect(root).not.toHaveAttribute('aria-label');
     await expectChecked(root, ['serif']);
   });
+});
+
+test.describe('neutral cells', () => {
+  for (const variant of ['solid', 'outline', 'ghost']) {
+    test(`a selected neutral ${variant} cell differs from an unselected one`, async ({ page }) => {
+      await page.goto(PAGE_URL);
+      const root = await groupRoot(page, `togglegroup-doc-cell-neutral-${variant}`);
+      const look = (cell: Locator) =>
+        cell.evaluate((el) => {
+          const style = getComputedStyle(el);
+          return [style.backgroundColor, style.borderTopColor, style.color];
+        });
+
+      const selected = await look(option(root, 'no').locator('[data-option-variant="selected"]'));
+      const unselected = await look(
+        option(root, 'yes').locator('[data-option-variant="unselected"]')
+      );
+
+      expect(selected).not.toEqual(unselected);
+    });
+  }
 });
