@@ -25,6 +25,7 @@ import CallToAction from '~/components/blocks/composite/CallToAction.astro';
   >
     <Headline
       class="absolute left-1/2 top-3/4 md:left-3/4 md:top-1/2 -translate-x-1/2 -translate-y-1/2"
+      htmlTag="h1"
       title="The Succulents"
     />
   </Container>
@@ -167,14 +168,14 @@ import CallToAction from '~/components/blocks/composite/CallToAction.astro';
   <!-- Vision Section -->
   <Content
     headline={{ anchorId: 'vision', title: 'Vision' }}
-    imageOnLeft
+    imagePosition="left"
     image={{
       src: '~/assets/images/vision/vision.png',
       alt: 'Obsidian pendant',
       layout: 'responsive',
       class: 'rounded-lg shadow',
     }}
-    contentSlotClass="h-full flex flex-col justify-center"
+    slotClass="h-full flex flex-col justify-center"
   >
     <p>
       <strong>Restoring jewelry's human and living dimension.</strong>
@@ -214,7 +215,7 @@ import CallToAction from '~/components/blocks/composite/CallToAction.astro';
       layout: 'responsive',
       class: 'rounded-lg shadow',
     }}
-    contentSlotClass="h-full flex flex-col justify-center"
+    slotClass="h-full flex flex-col justify-center"
   >
     <p>She was born in Mexico. A country of intense colors, powerful symbols, resilience.</p>
     <p>
@@ -327,7 +328,7 @@ import CallToAction from '~/components/blocks/composite/CallToAction.astro';
       layout: 'responsive',
       class: 'rounded-lg shadow',
     }}
-    contentSlotClass="h-full flex flex-col justify-center"
+    slotClass="h-full flex flex-col justify-center"
   >
     <ItemsTimeline
       defaultItemConfig={{
