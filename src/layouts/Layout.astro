@@ -25,7 +25,7 @@ import { translations } from '~/i18n';
 import logoSrc from '~/assets/vectors/logo.svg?raw';
 
 import Analytics from '@vercel/analytics/astro';
-import  SpeedInsights  from "@vercel/speed-insights/astro"
+import SpeedInsights from '@vercel/speed-insights/astro';
 import LanguageToggle from '~/components/blocks/primitives/LanguageToggle.astro';
 
 export type Props = {
@@ -100,7 +100,14 @@ const isProd = import.meta.env.PROD;
     <Metadata {...metadata} />
     <SiteVerification />
     <AnalyticsBlock />
-    {isProd ? <Analytics /> <SpeedInsights/> : null}
+    {
+      isProd && (
+        <>
+          <Analytics />
+          <SpeedInsights />
+        </>
+      )
+    }
 
     <!-- Initialize theme before page renders to prevent FOUC -->
     <script is:inline define:vars={{ colorScheme }}>
@@ -154,11 +161,13 @@ const isProd = import.meta.env.PROD;
           vector: {
             src: logoSrc,
           },
-          class: 'text-mantle hover:text-mantle in-data-[scrolled]:text-normal in-data-[scrolled]:hover:text-normal w-48 md:w-72 md:in-data-[scrolled]:w-48',
+          class:
+            'text-mantle hover:text-mantle in-data-[scrolled]:text-normal in-data-[scrolled]:hover:text-normal w-48 md:w-72 md:in-data-[scrolled]:w-48',
         }}
         defaultButtonConfig={{
           variant: 'link',
-          class: 'text-crust hover:text-crust in-data-[scrolled]:text-normal in-data-[scrolled]:hover:text-normal',
+          class:
+            'text-crust hover:text-crust in-data-[scrolled]:text-normal in-data-[scrolled]:hover:text-normal',
         }}
         leftButtons={[
           {
@@ -191,7 +200,7 @@ const isProd = import.meta.env.PROD;
         disclaimer={t.footer.disclaimer}
         footnote={t.footer.footnote}
         languageToggle={{}}
-        languageToggleAlign='right'
+        languageToggleAlign="right"
       />
 
       <Modal
