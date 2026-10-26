@@ -1,9 +1,9 @@
 export default {
   nav: {
-    succulentes: { label: 'The Succulents', href: '#the-succulents' },
+    calavera: { label: 'La Calavera', href: '#la-calavera' },
     vision: { label: 'Vision', href: '#vision' },
     creator: { label: 'The Creator', href: '#creator' },
-    otherCollections: { label: 'Other Collections', href: '#other-collections' },
+    succulentes: { label: 'The Succulents', href: '#the-succulents' },
     bespokeJewelry: { label: 'Bespoke Jewelry', href: '#bespoke-jewelry' },
     contact: { label: 'Contact Me', href: '#contact-me' },
   },
