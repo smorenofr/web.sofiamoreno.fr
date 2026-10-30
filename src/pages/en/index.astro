@@ -278,49 +278,61 @@ import CallToAction from '~/components/blocks/composite/CallToAction.astro';
   </Container>
 
   <!-- Bespoke Jewelry Section -->
-  <Content
-    container={{ background: { class: 'bg-surface' } }}
-    headline={{
-      anchorId: 'bespoke-jewelry',
-      title: 'Bespoke Jewelry',
-    }}
-    image={{
-      src: '~/assets/images/sur mesure/02.png',
-      alt: 'Atelier',
-      layout: 'responsive',
-      class: 'rounded-lg shadow',
-    }}
-    slotClass="h-full flex flex-col justify-center"
-  >
-    <ItemsTimeline
-      defaultItemConfig={{
-        icon: { class: 'bg-tertiary text-background p-2 rounded-full' },
-      }}
-      items={[
-        {
-          icon: { name: 'tabler:bulb' },
-          title: 'Intention',
-          content: 'We define your story, your symbols, your moment.',
-        },
-        {
-          icon: { name: 'tabler:brush' },
-          title: 'Visualization',
-          content: 'We design the piece with you.',
-        },
-        {
-          icon: { name: 'tabler:mouse' },
-          title: 'Transformation',
-          content:
-            'We adjust and transform the design in 3D. Volumes, proportions and details are refined until the perfect balance.',
-        },
-        {
-          icon: { name: 'tabler:diamond' },
-          title: 'Fabrication',
-          content: 'The piece is crafted in precious metals.',
-        },
-      ]}
-    />
-  </Content>
+  <Container background={{ class: 'bg-surface' }}>
+    <Headline anchorId="bespoke-jewelry" title="Bespoke Jewelry" class="mb-6 md:mb-8 lg:mb-12" />
+    <TwoColumnContainer htmlTag="div" responsive content={{ air: 'none' }}>
+      <div slot="left" class="h-full flex flex-col justify-center">
+        <ItemsTimeline
+          defaultItemConfig={{
+            icon: { class: 'bg-tertiary text-background p-2 rounded-full' },
+          }}
+          items={[
+            {
+              icon: { name: 'tabler:bulb' },
+              title: 'Intention',
+              content: 'We define your story, your symbols, your moment.',
+            },
+            {
+              icon: { name: 'tabler:brush' },
+              title: 'Visualization',
+              content: 'We design the piece with you.',
+            },
+            {
+              icon: { name: 'tabler:mouse' },
+              title: 'Transformation',
+              content:
+                'We adjust and transform the design in 3D. Volumes, proportions and details are refined until the perfect balance.',
+            },
+            {
+              icon: { name: 'tabler:diamond' },
+              title: 'Fabrication',
+              content: 'The piece is crafted in precious metals.',
+            },
+          ]}
+        />
+      </div>
+      <div slot="right">
+        <ContentCarousel loop autoplay={{ enabled: true, delay: 3000, pauseOnHover: true }}>
+          <ContentCarouselItem basis="basis-full">
+            <Image
+              src="~/assets/images/sur mesure/01.jpg"
+              alt="Sofia Moreno from behind at her jeweller's bench, among tools, a succulent and marigolds"
+              layout="responsive"
+              class="rounded-lg shadow"
+            />
+          </ContentCarouselItem>
+          <ContentCarouselItem basis="basis-full">
+            <Image
+              src="~/assets/images/sur mesure/02.jpg"
+              alt="Sofia Moreno modelling a calavera in 3D on a computer"
+              layout="responsive"
+              class="rounded-lg shadow"
+            />
+          </ContentCarouselItem>
+        </ContentCarousel>
+      </div>
+    </TwoColumnContainer>
+  </Container>
 
   <!-- Call to Action Section -->
   <CallToAction
