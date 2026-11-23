@@ -1,0 +1,110 @@
+site:
+  name: 'Sofia Moreno'
+  site: 'https://sofiamoreno.fr'
+  base: '/'
+  trailingSlash: false
+
+i18n:
+  default: 'fr'
+  languages:
+    - code: 'fr'
+      locale: 'fr-FR'
+      basePath: '/'
+      direction: 'ltr'
+      label: 'Français'
+    - code: 'en'
+      locale: 'en-US'
+      basePath: '/en'
+      direction: 'ltr'
+      label: 'English'
+
+metadata:
+  title:
+    default: 'Sofia Moreno'
+    template: '%s | Joaillerie sur Mesure à Paris'
+  description: 'Sofia Moreno, créatrice de joaillerie sur mesure à Paris. Découvrez des pièces uniques alliant élégance et savoir-faire.'
+  author: 'Sofia Moreno'
+  keywords:
+    [
+      'joaillerie',
+      'bijoux sur mesure',
+      'Sofia Moreno',
+      'créatrice de bijoux',
+      'bijoux Paris',
+      'modelisation 3D',
+      'haute joaillerie',
+      'bijoux personnalisés',
+      'atelier de joaillerie',
+      'bijoux artisanaux',
+    ]
+  charset: 'UTF-8'
+  robots:
+    index: true
+    follow: true
+  canonical: 'https://sofiamoreno.fr'
+
+  theme:
+    color: '#F6F1EA'
+    colorScheme: 'only light'
+
+  icons:
+    favicon: '/favicon.ico'
+    apple: '/apple-touch-icon.png'
+    icon32: '/favicon-32x32.png'
+    icon16: '/favicon-16x16.png'
+    maskIcon: '/safari-pinned-tab.svg'
+    maskIconColor: '#F1EEE9'
+
+  openGraph:
+    site_name: 'Sofia Moreno'
+    locale: 'fr_FR'
+    localeAlternate: ['en_US']
+    type: 'website'
+    description: 'Sofia Moreno, créatrice de joaillerie sur mesure à Paris. Découvrez des pièces uniques alliant élégance et savoir-faire.'
+    images:
+      - url: '/social.png'
+        width: 1200
+        height: 630
+        alt: 'Sofia Moreno'
+        type: 'image/png'
+
+  twitter:
+    cardType: 'summary_large_image'
+    title: 'Sofia Moreno'
+    description: 'Sofia Moreno, créatrice de joaillerie sur mesure à Paris. Découvrez des pièces uniques alliant élégance et savoir-faire.'
+    image: '/social.png'
+    imageAlt: 'Sofia Moreno'
+
+  localized:
+    en:
+      title:
+        default: 'Sofia Moreno'
+        template: '%s | Bespoke Jewelry in Paris'
+      description: 'Sofia Moreno, bespoke jewelry designer in Paris. Discover unique pieces combining elegance and craftsmanship.'
+      keywords:
+        [
+          'jewelry',
+          'bespoke jewelry',
+          'Sofia Moreno',
+          'jewelry designer',
+          'jewelry Paris',
+          '3D modeling',
+          'fine jewelry',
+          'custom jewelry',
+          'jewelry workshop',
+          'handcrafted jewelry',
+        ]
+      openGraph:
+        site_name: 'Sofia Moreno'
+        locale: 'en_US'
+        localeAlternate: ['fr_FR']
+        description: 'Sofia Moreno, bespoke jewelry designer in Paris. Discover unique pieces combining elegance and craftsmanship.'
+      twitter:
+        title: 'Sofia Moreno'
+        description: 'Sofia Moreno, bespoke jewelry designer in Paris. Discover unique pieces combining elegance and craftsmanship.'
+
+analytics:
+  vendors:
+    googleAnalytics:
+      id: 'G-M3QYDP56XF'
+      partytown: false

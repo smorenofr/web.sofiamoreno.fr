@@ -1,0 +1,114 @@
+---
+import BaseLayout from '@alfadormx/blocks/Layout.astro';
+import Header from '@alfadormx/blocks/composite/Header.astro';
+import Footer from '@alfadormx/blocks/composite/Footer.astro';
+import NavigationTree from '@alfadormx/blocks/composite/NavigationTree.astro';
+import ModalBlock from '@alfadormx/blocks/layout/Modal.astro';
+import LanguageToggle from '@alfadormx/blocks/primitives/LanguageToggle.astro';
+import type { MetaData } from '@alfadormx/blocks/types/metadata';
+import { useCopy } from '@alfadormx/blocks/copy';
+import VercelAnalytics from '@vercel/analytics/astro';
+import SpeedInsights from '@vercel/speed-insights/astro';
+import logoSrc from '~/assets/vectors/logo.svg?raw';
+import { MONO_LABEL, SOCIALS, homeUrl, sectionNav } from '~/site';
+
+interface Props {
+  langCode: string;
+  metadata?: Partial<MetaData>;
+}
+
+const { langCode, metadata } = Astro.props;
+const { copy } = useCopy(Astro, 'home');
+const { nav, footer } = copy;
+const sections = sectionNav(nav);
+
+const ON_IMAGE = 'text-crust hover:text-crust';
+const SCROLLED = 'in-data-[scrolled]:text-normal in-data-[scrolled]:hover:text-primary';
+---
+
+<BaseLayout langCode={langCode} metadata={metadata}>
+  {import.meta.env.PROD && (
+    <>
+      <VercelAnalytics />
+      <SpeedInsights />
+    </>
+  )}
+  <Header
+    isFloating
+    container={{
+      content: { boxWidth: 'max-w-none' },
+      spacing: { padding: 'py-3 px-6 lg:px-10' },
+      background: {
+        class:
+          'transition-colors duration-500 in-data-[scrolled]:bg-background/85 in-data-[scrolled]:backdrop-blur-md in-data-[scrolled]:border-b in-data-[scrolled]:border-border',
+      },
+    }}
+    logo={{
+      href: homeUrl(langCode),
+      'aria-label': nav.home,
+      vector: { src: logoSrc },
+      class: `order-first w-36 md:w-44 p-0 ${ON_IMAGE} ${SCROLLED}`,
+    }}
+    defaultButtonConfig={{ variant: 'link', class: `${ON_IMAGE} ${SCROLLED}` }}
+    rightButtons={[
+      ...SOCIALS.map((s) => ({ ...s, class: 'hidden md:inline-flex' })),
+      {
+        'data-modal-trigger': 'site-menu',
+        'aria-label': nav.menuLabel,
+        icon: { name: 'heroicons:bars-2' },
+      },
+    ]}
+  />
+
+  <ModalBlock
+    id="site-menu"
+    position="right"
+    size="sm"
+    class="bg-background mx-0 h-full max-h-none rounded-none shadow-none p-10 pt-24 flex flex-col"
+  >
+    <p class={`${MONO_LABEL} text-brown mb-6`}>── Menu</p>
+    <NavigationTree
+      items={sections}
+      defaultItemConfig={{
+        variant: 'link',
+        size: 'xl',
+        class: 'font-title font-light text-3xl text-normal hover:text-primary px-0',
+        'data-modal-close': '',
+      }}
+    />
+    <LanguageToggle
+      class="mt-auto pt-8 border-t border-border"
+      defaultButtonConfig={{ variant: 'link', class: `${MONO_LABEL} p-0 text-muted` }}
+      activeButtonConfig={{ class: 'text-primary' }}
+    />
+  </ModalBlock>
+
+  <main>
+    <slot />
+  </main>
+
+  <Footer
+    container={{
+      spacing: { padding: 'px-6 lg:px-10 pt-16 pb-10' },
+      border: { width: 'border-t', color: 'border-border' },
+      background: { class: 'bg-background' },
+    }}
+    logo={{
+      href: homeUrl(langCode),
+      'aria-label': nav.home,
+      vector: { src: logoSrc },
+      class: 'w-44 p-0 text-normal hover:text-primary',
+    }}
+    disclaimer={footer.disclaimer}
+    disclaimerClass="text-xs leading-relaxed text-muted max-w-md"
+    footnote={footer.footnote}
+    footnoteClass={`${MONO_LABEL} text-[0.65rem] leading-loose text-muted mr-0`}
+    socialButtons={SOCIALS}
+    defaultSocialButtonConfig={{ class: 'text-normal hover:text-primary' }}
+    languageToggle={{
+      defaultButtonConfig: { class: `${MONO_LABEL} text-muted` },
+      activeButtonConfig: { class: 'text-primary' },
+    }}
+    languageToggleAlign="right"
+  />
+</BaseLayout>

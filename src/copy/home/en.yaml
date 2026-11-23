@@ -1,0 +1,118 @@
+pageTitle: 'Sofia Moreno'
+
+nav:
+  home: 'Sofia Moreno, home'
+  menuLabel: 'Open the menu'
+  sections:
+    calavera: { id: 'the-calavera', label: 'La Calavera' }
+    vision: { id: 'vision', label: 'Vision' }
+    creator: { id: 'creator', label: 'The Creator' }
+    succulentes: { id: 'the-succulents', label: 'The Succulents' }
+    bespoke: { id: 'bespoke-jewelry', label: 'Bespoke Jewelry' }
+    contact: { id: 'contact-me', label: 'Contact Me' }
+
+hero:
+  tagline: '── Bespoke jewelry · Paris'
+  title: 'Calavera'
+  meta: 'Sofia Moreno'
+
+quote: |
+  When death meets color,<br>
+  memory becomes light,<br>
+  and life, a celebration...
+
+calavera:
+  tagline: '01 ── Collection'
+  title: 'La Calavera'
+  intro: |
+    Inspired by the Mexican Día de Muertos, **Calavera celebrates life, memory and color.**<br>
+    Black titanium, gold, sapphires and colored lacquers meet in a play of contrasts.
+  images:
+    - 'Calavera ring in black titanium with coral lacquer and green sapphires set in gold'
+    - 'Calavera ring in black titanium with turquoise lacquer and orange sapphires set in gold'
+    - 'Calavera ring in black titanium with yellow lacquer and blue sapphires set in gold'
+  story: |
+    In Mexico, death is part of life, of our memories and of our identity.
+
+    **Memory unites us.**
+
+    **Color moves us.**
+
+    **Life is celebrated.**
+
+    Calavera draws its inspiration from this Mexican tradition, where colors and symbols transform remembrance into celebration.
+
+    Each creation combines **black titanium, gold, sapphires and colored lacquers.**
+
+    Memories remain, life keeps reinventing itself.
+
+vision:
+  tagline: '02 ── Vision'
+  title: 'Vision'
+  imageAlt: 'Obsidian pendant'
+  lead: "Restoring jewelry's human and living dimension."
+  body: |
+    For over twenty years, technology has been an integral part of my passion for fine jewellery. I see it as a way to push the boundaries of creativity.
+
+    3D modelling, engineering and innovative manufacturing techniques allow me to explore new forms, movements and materials, while preserving what matters most: the emotion and intention behind each piece.
+
+    Born in Mexico, educated in Italy and shaped by my experience within prestigious Parisian jewellery houses, I draw inspiration from these three worlds to create fine jewellery that is free-spirited, bold and contemporary.
+
+creator:
+  tagline: '03 ── Portrait'
+  title: 'The Creator'
+  imageAlt: 'Sofia Moreno'
+  body: |
+    She was born in Mexico. A country of intense colors, powerful symbols, resilience.
+
+    In Italy, she studies jewelry engineering.<br>
+    There she learns 3D modeling, rigor, precision, the demand for detail.
+
+    In Paris, within prestigious houses, she participates in the development of iconic collections.
+
+    Today, she connects these three worlds, and pursues her dreams to the fullest.
+
+succulentes:
+  tagline: '04 ── Collection'
+  title: 'The Succulents'
+  body: |
+    Inspired by the succulent plants of Mexico, this collection celebrates **resilience**, **femininity** and **transformation**. Organic, sculptural forms that evoke the strength of nature and the beauty of movement.
+
+    **Colored titanium** meets gold and diamonds in a play of materials, light and contrasts. Contemporary, bold jewelry full of life, where every detail reveals a new facet.
+
+    Designed to be **modular** and **customizable**, the collection offers many configuration possibilities. Colors, volumes and compositions are reinvented at will, to create a one-of-a-kind piece.
+
+    **A living collection**, inspired by nature, that celebrates the freedom to be yourself and to reinvent yourself.
+  images:
+    - 'Succulent pendant in pink titanium, gold and diamonds'
+    - 'Succulent necklace in green titanium, gold and diamonds'
+    - 'Succulent earring in blue-green titanium, gold and diamonds, worn'
+    - 'Succulent necklace in purple titanium, gold and diamonds'
+    - 'Succulent necklace in green titanium and gold on a double gold cord'
+
+bespoke:
+  tagline: '05 ── Bespoke'
+  title: 'Bespoke Jewelry'
+  steps:
+    - title: 'Intention'
+      content: 'We define your story, your symbols, your moment.'
+    - title: 'Visualization'
+      content: 'We design the piece with you.'
+    - title: 'Transformation'
+      content: 'We adjust and transform the design in 3D. Volumes, proportions and details are refined until the perfect balance.'
+    - title: 'Fabrication'
+      content: 'The piece is crafted in precious metals.'
+  images:
+    - "Sofia Moreno from behind at her jeweller's bench, among tools, a succulent and marigolds"
+    - 'Sofia Moreno modelling a calavera in 3D on a computer'
+
+contact:
+  tagline: '06 ── Contact'
+  title: 'Contact Me'
+  subtitle: 'Fill out the form to discuss your bespoke jewelry project, or for any questions about the collections.'
+  form: 'Fill out the form'
+  email: 'Contact me'
+
+footer:
+  disclaimer: 'The creations presented illustrate my work and sometimes collaborations. Each bespoke project is unique: results, timelines, and finishes vary according to the specifications, materials, and your involvement. By ordering, you accept the uniqueness and potential adjustments of the design and manufacturing process.'
+  footnote: '© 2026 **Sofía Moreno**. All rights reserved. - 50 Avenue Champs-Élysées, 75008 Paris, France - SIRET 100 236 124 00010 - VAT FR42 100236124'

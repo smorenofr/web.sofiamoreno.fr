@@ -1,0 +1,118 @@
+pageTitle: 'Sofia Moreno'
+
+nav:
+  home: 'Sofia Moreno, accueil'
+  menuLabel: 'Ouvrir le menu'
+  sections:
+    calavera: { id: 'la-calavera', label: 'La Calavera' }
+    vision: { id: 'vision', label: 'Vision' }
+    creator: { id: 'creatrice', label: 'La Créatrice' }
+    succulentes: { id: 'les-succulentes', label: 'Les Succulentes' }
+    bespoke: { id: 'joaillerie-sur-mesure', label: 'Joaillerie sur mesure' }
+    contact: { id: 'contactez-moi', label: 'Contactez-moi' }
+
+hero:
+  tagline: '── Joaillerie sur mesure · Paris'
+  title: 'Calavera'
+  meta: 'Sofia Moreno'
+
+quote: |
+  Quand la mort rencontre la couleur,<br>
+  le souvenir devient lumière,<br>
+  et la vie, une célébration...
+
+calavera:
+  tagline: '01 ── Collection'
+  title: 'La Calavera'
+  intro: |
+    Inspirée du Día de Muertos mexicain, **Calavera célèbre la vie, la mémoire et la couleur.**<br>
+    Le titane noir, l'or, les saphirs et les laques colorées se rencontrent dans un jeu de contrastes.
+  images:
+    - "Bague Calavera en titane noir, laque corail et saphirs verts sertis d'or"
+    - "Bague Calavera en titane noir, laque turquoise et saphirs orange sertis d'or"
+    - "Bague Calavera en titane noir, laque jaune et saphirs bleus sertis d'or"
+  story: |
+    Au Mexique, la mort fait partie de la vie, de nos souvenirs et de notre identité.
+
+    **La mémoire nous unit.**
+
+    **La couleur nous anime.**
+
+    **La vie se célèbre.**
+
+    Calavera puise son inspiration dans cette tradition mexicaine, où les couleurs et les symboles transforment le souvenir en célébration.
+
+    Chaque création associe **titane noir, or, saphirs et laques colorées.**
+
+    Les souvenirs restent, la vie continue de se réinventer.
+
+vision:
+  tagline: '02 ── Vision'
+  title: 'Vision'
+  imageAlt: 'Pendentif obsidienne'
+  lead: 'Redonner à la joaillerie sa dimension humaine et vivante.'
+  body: |
+    Depuis plus de vingt ans, la technologie accompagne ma passion pour la joaillerie. Je la vois comme un moyen de repousser les limites de la création.
+
+    La modélisation 3D, l'ingénierie et les nouvelles techniques de fabrication me permettent d'explorer des formes, des mouvements et des matières, tout en préservant l'essentiel : l'émotion et l'intention derrière chaque pièce.
+
+    Née au Mexique, formée en Italie et enrichie par mon parcours au sein des grandes maisons parisiennes, je puise dans ces trois univers pour imaginer une joaillerie libre, audacieuse et contemporaine.
+
+creator:
+  tagline: '03 ── Portrait'
+  title: 'La Créatrice'
+  imageAlt: 'Sofia Moreno'
+  body: |
+    Elle est née au Mexique. Un pays de couleurs intenses, de symboles puissants, de résilience.
+
+    En Italie, elle étudie l'ingénierie joaillière.<br>
+    Elle y apprend la modélisation 3D, la rigueur, la précision, l'exigence du détail.
+
+    À Paris, au sein de grandes maisons, elle participe au développement de collections emblématiques.
+
+    Aujourd'hui, elle relie ces trois mondes, et elle y va au bout de ses rêves.
+
+succulentes:
+  tagline: '04 ── Collection'
+  title: 'Les Succulentes'
+  body: |
+    Inspirée des plantes succulentes du Mexique, cette collection célèbre la **résilience**, la **féminité** et la **transformation**. Des formes organiques et sculpturales qui évoquent la force de la nature et la beauté du mouvement.
+
+    Le **titane coloré** rencontre l'or et les diamants dans un jeu de matières, de lumière et de contrastes. Une joaillerie contemporaine, audacieuse et pleine de vie, où chaque détail révèle une nouvelle facette.
+
+    Pensée pour être **modulable** et **personnalisable**, la collection offre de nombreuses possibilités de configuration. Couleurs, volumes et compositions se réinventent au gré des envies, pour créer une pièce singulière.
+
+    **Une collection vivante**, inspirée par la nature, qui célèbre la liberté d'être soi et de se réinventer.
+  images:
+    - 'Pendentif succulente en titane rose, or et diamants'
+    - 'Collier succulente en titane vert, or et diamants'
+    - "Boucle d'oreille succulente en titane bleu-vert, or et diamants portée"
+    - 'Collier succulente en titane violet, or et diamants'
+    - 'Collier succulente en titane vert et or sur double cordon doré'
+
+bespoke:
+  tagline: '05 ── Sur mesure'
+  title: 'Joaillerie sur mesure'
+  steps:
+    - title: 'Intention'
+      content: 'Nous définissons votre histoire, vos symboles, votre moment.'
+    - title: 'Visualisation'
+      content: 'Nous dessinons la pièce avec vous.'
+    - title: 'Transformation'
+      content: "Nous ajustons et transformons le design en 3D. Les volumes, les proportions et les détails sont affinés jusqu'à l'équilibre parfait."
+    - title: 'Fabrication'
+      content: 'La pièce est réalisée en métaux précieux.'
+  images:
+    - 'Sofia Moreno de dos à son établi de joaillerie, entre outils, succulente et fleurs de cempasúchil'
+    - 'Sofia Moreno modélisant en 3D une calavera sur ordinateur'
+
+contact:
+  tagline: '06 ── Contact'
+  title: 'Contactez-moi'
+  subtitle: 'Remplissez le formulaire pour discuter de votre projet de bijou sur mesure, ou pour toute question sur les collections.'
+  form: 'Remplissez le formulaire'
+  email: 'Contactez-moi'
+
+footer:
+  disclaimer: 'Les créations présentées illustrent mon travail et parfois des collaborations. Chaque projet sur mesure est unique : résultats, délais et finitions varient selon le cahier des charges, les matériaux et votre implication. En commandant, vous acceptez la singularité et les éventuels ajustements du processus de conception et de fabrication.'
+  footnote: '© 2026 **Sofía Moreno**. Tous droits réservés. - 50 Avenue Champs-Élysées, 75008 Paris, France - SIRET 100 236 124 00010 - TVA FR42 100236124'

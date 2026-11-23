@@ -1,0 +1,340 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import CallToAction from '@alfadormx/blocks/composite/CallToAction.astro';
+import Content from '@alfadormx/blocks/composite/Content.astro';
+import ContentCarousel from '@alfadormx/blocks/composite/ContentCarousel.astro';
+import Hero from '@alfadormx/blocks/composite/Hero.astro';
+import ItemsTimeline from '@alfadormx/blocks/composite/ItemsTimeline.astro';
+import Container from '@alfadormx/blocks/layout/Container.astro';
+import TwoColumnContainer from '@alfadormx/blocks/layout/TwoColumnContainer.astro';
+import Headline from '@alfadormx/blocks/primitives/Headline.astro';
+import Video from '@alfadormx/blocks/primitives/Video.astro';
+import type { ContainerProps } from '@alfadormx/blocks/types/container';
+import { localizedPaths, useCopy } from '@alfadormx/blocks/copy';
+import {
+  EMAIL,
+  FORM_URL,
+  MONO_LABEL,
+  OUTLINE_BUTTON,
+  PROSE,
+  PROSE_TEXT,
+  SECTION,
+  SECTION_HEADLINE,
+} from '~/site';
+
+export const getStaticPaths = () => localizedPaths();
+
+type Props = { langCode: string; basePath: string };
+
+const { langCode, copy: c } = useCopy(Astro, 'home');
+const { sections } = c.nav;
+
+const STEP_ICONS = ['tabler:bulb', 'tabler:brush', 'tabler:mouse', 'tabler:diamond'];
+
+const CARD_OVERLAY = 'bg-linear-to-t from-black/60 via-black/10 to-transparent';
+
+// Background images carry no alt, so the description is kept for screen readers as a hidden item.
+function overlayCard(image: string, alt: string, label: string, minHeight: string): ContainerProps {
+  return {
+    htmlTag: 'figure',
+    minHeight,
+    background: { image, overlayClass: CARD_OVERLAY },
+    spacing: { padding: 'p-6 md:p-8' },
+    content: { widthType: 'full', air: 'none', class: 'flex h-full flex-col justify-end' },
+    items: [
+      { content: alt, class: 'sr-only' },
+      { content: label, class: `${MONO_LABEL} text-crust` },
+    ],
+  };
+}
+
+const calaveraCards = c.calavera.images.map((alt, i) =>
+  overlayCard(
+    `~/assets/images/calavera/0${i + 1}.jpg`,
+    alt,
+    `Calavera · 0${i + 1} / 0${c.calavera.images.length}`,
+    i === 0 ? 'min-h-[26rem] md:min-h-[46rem]' : 'min-h-[22rem] md:min-h-0'
+  )
+);
+---
+
+<Layout langCode={langCode} metadata={{ title: { default: c.pageTitle } }}>
+  <Hero
+    container={{
+      minHeight: 'min-h-svh',
+      background: {
+        video: '/videos/index-hero.mp4',
+        poster: '~/assets/images/hero-poster.jpg',
+        // bg-transparent cancels Hero's light default wash (bg-base/60) under the gradient.
+        overlayClass: 'bg-transparent bg-linear-to-t from-black/75 via-black/25 to-black/35',
+      },
+      class: 'flex flex-col',
+      spacing: { padding: 'px-6 lg:px-10 pb-16 md:pb-24 pt-32' },
+      content: { widthType: 'full', air: 'none', class: 'flex-1 justify-end' },
+    }}
+    headline={{
+      align: 'left',
+      tagline: c.hero.tagline,
+      title: c.hero.title,
+      subtitle: c.hero.meta,
+      class: 'm-0 space-y-6',
+      taglineClass: `${MONO_LABEL} text-honey-200`,
+      titleClass:
+        'font-title font-light tracking-tight text-crust text-7xl sm:text-8xl md:text-[10rem] lg:text-[13rem] leading-[0.85] mb-0',
+      subtitleClass: `${MONO_LABEL} pt-6 text-crust/80 mx-0`,
+    }}
+  />
+
+  <Container
+    spacing={{ padding: 'py-24 md:py-36 px-6 lg:px-10' }}
+    content={{ boxWidth: 'max-w-4xl' }}
+    items={[
+      {
+        content: c.quote,
+        class:
+          'font-quote italic font-light text-3xl md:text-5xl leading-snug text-normal border-l border-brown pl-6 md:pl-10',
+      },
+    ]}
+  />
+
+  <Container {...SECTION} background={{ class: 'bg-surface' }}>
+    <Headline
+      {...SECTION_HEADLINE}
+      anchorId={sections.calavera.id}
+      tagline={c.calavera.tagline}
+      title={c.calavera.title}
+    />
+    <Container
+      htmlTag="div"
+      spacing={{ padding: 'p-0', margin: 'mb-12 md:mb-16' }}
+      content={{ widthType: 'full', air: 'none' }}
+      items={[
+        {
+          content: c.calavera.intro,
+          class:
+            'max-w-3xl text-xl md:text-2xl leading-relaxed text-muted [&_strong]:text-normal [&_strong]:font-medium',
+        },
+      ]}
+    />
+    <TwoColumnContainer htmlTag="div" responsive ratio="2:1" gap="normal" content={{ air: 'none' }}>
+      <div slot="left" class="h-full">
+        <Container {...calaveraCards[0]} class="h-full" />
+      </div>
+      <div slot="right" class="grid h-full gap-4 md:grid-rows-2">
+        <Container {...calaveraCards[1]} />
+        <Container {...calaveraCards[2]} />
+      </div>
+    </TwoColumnContainer>
+    <TwoColumnContainer
+      htmlTag="div"
+      responsive
+      gap="loose"
+      content={{ air: 'none', class: 'items-center' }}
+      spacing={{ margin: 'mt-20 md:mt-32' }}
+    >
+      <Container
+        slot="left"
+        htmlTag="div"
+        spacing={{ padding: 'p-0' }}
+        content={{ widthType: 'full', air: 'none' }}
+        items={[{ content: c.calavera.story, class: PROSE }]}
+      />
+      <Video
+        slot="right"
+        aspectRatio="square"
+        autoplay
+        loop
+        muted
+        hideControls
+        source={{
+          provider: 'html5',
+          sources: [{ src: '/videos/calavera/calavera.mp4', type: 'video/mp4' }],
+        }}
+      />
+    </TwoColumnContainer>
+  </Container>
+
+  <Content
+    container={SECTION}
+    headline={{
+      ...SECTION_HEADLINE,
+      anchorId: sections.vision.id,
+      tagline: c.vision.tagline,
+      title: c.vision.title,
+    }}
+    imagePosition="left"
+    image={{
+      src: '~/assets/images/vision/vision.jpg',
+      alt: c.vision.imageAlt,
+      layout: 'responsive',
+      aspectRatio: 4 / 5,
+      class: 'w-full rounded-none',
+    }}
+    twoColumnContainer={{ gap: 'loose', content: { air: 'none', class: 'items-center' } }}
+    slotClass="flex h-full flex-col justify-center"
+  >
+    <Container
+      htmlTag="div"
+      spacing={{ padding: 'p-0' }}
+      content={{ widthType: 'full', air: 'none' }}
+      items={[
+        {
+          content: c.vision.lead,
+          class:
+            'font-quote font-light text-3xl md:text-4xl leading-tight text-normal mb-8 max-w-xl',
+        },
+        { content: c.vision.body, class: PROSE },
+      ]}
+    />
+  </Content>
+
+  <Content
+    container={{ ...SECTION, background: { class: 'bg-surface' } }}
+    headline={{
+      ...SECTION_HEADLINE,
+      anchorId: sections.creator.id,
+      tagline: c.creator.tagline,
+      title: c.creator.title,
+    }}
+    image={{
+      src: '~/assets/images/me-smoreno.jpeg',
+      alt: c.creator.imageAlt,
+      layout: 'responsive',
+      aspectRatio: 4 / 5,
+      class: 'w-full rounded-none',
+    }}
+    twoColumnContainer={{ gap: 'loose', content: { air: 'none', class: 'items-center' } }}
+    slotClass="flex h-full flex-col justify-center"
+  >
+    <Container
+      htmlTag="div"
+      spacing={{ padding: 'p-0' }}
+      content={{ widthType: 'full', air: 'none' }}
+      items={[{ content: c.creator.body, class: PROSE }]}
+    />
+  </Content>
+
+  <Container
+    {...SECTION}
+    spacing={{ padding: 'pt-24 md:pt-32 lg:pt-40 pb-12 md:pb-16 px-6 lg:px-10' }}
+  >
+    <Headline
+      {...SECTION_HEADLINE}
+      anchorId={sections.succulentes.id}
+      tagline={c.succulentes.tagline}
+      title={c.succulentes.title}
+    />
+    <Container
+      htmlTag="div"
+      spacing={{ padding: 'p-0' }}
+      content={{ widthType: 'full', air: 'none' }}
+      items={[
+        {
+          content: c.succulentes.body,
+          class: `${PROSE_TEXT} md:columns-2 md:gap-16 [&_p]:break-inside-avoid`,
+        },
+      ]}
+    />
+  </Container>
+  <ContentCarousel
+    container={{
+      spacing: { padding: 'pb-24 md:pb-32 lg:pb-40' },
+      content: { widthType: 'full', air: 'none' },
+    }}
+    ariaLabel={c.succulentes.title}
+    loop
+    autoplay={{ mode: 'continuous', speed: 30 }}
+    showIndicators={false}
+    prevButton={false}
+    nextButton={false}
+    itemClass="basis-4/5 sm:basis-1/2 lg:basis-1/3 px-2"
+    defaultImageConfig={{ aspectRatio: 4 / 5, class: 'w-full h-auto rounded-none' }}
+    items={c.succulentes.images.map((alt, i) => ({
+      src: `~/assets/images/succulentes/0${i + 1}.jpg`,
+      alt,
+    }))}
+  />
+
+  <Container {...SECTION} background={{ class: 'bg-surface' }}>
+    <Headline
+      {...SECTION_HEADLINE}
+      anchorId={sections.bespoke.id}
+      tagline={c.bespoke.tagline}
+      title={c.bespoke.title}
+    />
+    <TwoColumnContainer
+      htmlTag="div"
+      responsive
+      gap="loose"
+      content={{ air: 'none', class: 'items-center' }}
+    >
+      <ItemsTimeline
+        slot="left"
+        gap="loose"
+        defaultItemConfig={{
+          icon: { class: 'bg-normal text-background p-2.5 rounded-full' },
+          titleClass: 'font-title font-normal text-2xl md:text-3xl mb-2',
+          textClass: 'text-muted leading-relaxed max-w-md',
+          connectorClass: 'bg-border-emphasis',
+        }}
+        items={c.bespoke.steps.map((step, i) => ({ ...step, icon: { name: STEP_ICONS[i] } }))}
+      />
+      <ContentCarousel
+        slot="right"
+        ariaLabel={c.bespoke.title}
+        loop
+        autoplay={{ delay: 4000 }}
+        defaultImageConfig={{ aspectRatio: 4 / 5, class: 'w-full h-auto rounded-none' }}
+        defaultIndicatorButtonConfig={{ class: 'bg-crust/60' }}
+        items={c.bespoke.images.map((alt, i) => ({
+          src: `~/assets/images/sur-mesure/0${i + 1}.jpg`,
+          alt,
+        }))}
+      />
+    </TwoColumnContainer>
+  </Container>
+
+  <CallToAction
+    container={{
+      minHeight: 'min-h-[80svh]',
+      background: { image: '~/assets/images/hero-poster.jpg', overlayClass: 'bg-black/60' },
+      spacing: { padding: 'py-32 px-6 lg:px-10' },
+      content: {
+        boxWidth: 'max-w-5xl',
+        class:
+          'bg-transparent rounded-none shadow-none overflow-visible flex flex-col justify-center',
+      },
+      class: 'flex items-center',
+    }}
+    headline={{
+      align: 'center',
+      anchorId: sections.contact.id,
+      tagline: c.contact.tagline,
+      title: c.contact.title,
+      subtitle: c.contact.subtitle,
+      class: 'mt-0 mb-12 space-y-6',
+      taglineClass: `${MONO_LABEL} text-honey-200`,
+      titleClass:
+        'font-title font-light tracking-tight text-crust text-5xl md:text-7xl lg:text-8xl leading-[0.95] mb-0',
+      subtitleClass: 'pt-6 text-lg md:text-xl text-crust/80 max-w-2xl',
+    }}
+    defaultActionConfig={OUTLINE_BUTTON}
+    actionsClass="mb-0"
+    actions={[
+      {
+        label: c.contact.form,
+        href: FORM_URL,
+        target: '_blank',
+        variant: 'solid',
+        intent: 'primary',
+        icon: { name: 'tabler:arrow-up-right' },
+      },
+      {
+        label: c.contact.email,
+        href: EMAIL,
+        class: 'border-crust text-crust hover:bg-crust hover:text-normal',
+        icon: { name: 'tabler:mail' },
+      },
+    ]}
+  />
+</Layout>
