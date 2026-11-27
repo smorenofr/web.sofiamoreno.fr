@@ -33,18 +33,14 @@ const STEP_ICONS = ['tabler:bulb', 'tabler:brush', 'tabler:mouse', 'tabler:diamo
 
 const CARD_OVERLAY = 'bg-linear-to-t from-black/60 via-black/10 to-transparent';
 
-// Background images carry no alt, so the description is kept for screen readers as a hidden item.
 function overlayCard(image: string, alt: string, label: string, minHeight: string): ContainerProps {
   return {
     htmlTag: 'figure',
     minHeight,
-    background: { image, overlayClass: CARD_OVERLAY },
+    background: { image, alt, overlayClass: CARD_OVERLAY },
     spacing: { padding: 'p-6 md:p-8' },
     content: { widthType: 'full', air: 'none', class: 'flex h-full flex-col justify-end' },
-    items: [
-      { content: alt, class: 'sr-only' },
-      { content: label, class: `${MONO_LABEL} text-crust` },
-    ],
+    items: [{ content: label, class: `${MONO_LABEL} text-crust` }],
   };
 }
 
@@ -65,13 +61,12 @@ const calaveraCards = c.calavera.images.map((alt, i) =>
       background: {
         video: '/videos/index-hero.mp4',
         poster: '~/assets/images/hero-poster.jpg',
-        // bg-transparent cancels Hero's light default wash (bg-base/60) under the gradient.
-        overlayClass: 'bg-transparent bg-linear-to-t from-black/75 via-black/25 to-black/35',
+        overlayClass: 'bg-linear-to-t from-black/75 via-black/25 to-black/35',
       },
-      class: 'flex flex-col',
       spacing: { padding: 'px-6 lg:px-10 pb-16 md:pb-24 pt-32' },
-      content: { widthType: 'full', air: 'none', class: 'flex-1 justify-end' },
+      content: { widthType: 'full', air: 'none' },
     }}
+    contentPosition="end"
     headline={{
       align: 'left',
       tagline: c.hero.tagline,
@@ -295,14 +290,14 @@ const calaveraCards = c.calavera.images.map((alt, i) =>
   </Container>
 
   <CallToAction
+    surface="plain"
     container={{
       minHeight: 'min-h-[80svh]',
       background: { image: '~/assets/images/hero-poster.jpg', overlayClass: 'bg-black/60' },
       spacing: { padding: 'py-32 px-6 lg:px-10' },
       content: {
         boxWidth: 'max-w-5xl',
-        class:
-          'bg-transparent rounded-none shadow-none overflow-visible flex flex-col justify-center',
+        class: 'flex flex-col justify-center',
       },
       class: 'flex items-center',
     }}
